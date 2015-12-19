@@ -5,10 +5,10 @@
   <groupId>app</groupId>
   <artifactId>Projektitunnit</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
 
   <name>Projektitunnit</name>
-  <url>http://maven.apache.org</url>
+  <url>https://github.com/RonjaO/Projektitunnit</url>
 
     <parent>
         <groupId>org.springframework.boot</groupId>

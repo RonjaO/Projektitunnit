@@ -123,6 +123,7 @@ kuvaus       | merkkijono (max 200) | Valinnainen kuvaus ryhmlle
 
 #4. Relaatiotietokantakaavio
 
+```
 [Kayttaja | (pk) sahkoposti; salasana; nimi]
 [Projekti | (pk)id; (fk) kayttaja:Kayttaja; (fk)ryhma:Ryhma; nimi; kuvaus]
 [Tyotunti | (pk)id; (fk)projekti;  (fk)kayttaja; alkamisaika; loppumisaika; kommentit]
@@ -134,4 +135,4 @@ kuvaus       | merkkijono (max 200) | Valinnainen kuvaus ryhmlle
 [Kayttaja]1-*[Tyotunti]
 [Ryhma]*-*[Kayttaja]
 [Ryhma]-*[Projekti]
-
+```

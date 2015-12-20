@@ -92,6 +92,7 @@ Kirjautuminen, rekisteröityminen
 
 ##Tietokohteiden kuvaukset
 Tietokohde: Kayttaja
+
 Atribuutti   | Arvojoukko    | kuvailu
 -------------|---------------|--------
 sähköposti   | merkkijono (max 50) | sähköposti, pääavain, Toimii käyttäjätunnuksena. Muotoa moi@example.com
@@ -99,12 +100,14 @@ salasana     |  merkkijono (max 50) | käyttäjän salasana
 nimi         | merkkijono (max 50) | Käyttäjän nimi
 
 Tietokohde: Projekti
+
 Atribuutti   | Arvojoukko     | Kuvaus
 -------------|----------------|--------
 nimi         | Merkkijono (max 50) | Projektin nimi
 kuvaus       | Merkkijono (max 200) | Valinnainen kuvaus projektille
 
 Tietokohde: Tyotunti
+
 Atribuutti   | Arvojoukko     | Kuvaus
 -------------|----------------|---------
 aalkuaika    | timestamp      | Tyotunnin alkamisajankohta
@@ -112,6 +115,7 @@ loppuaika    | timestamp      | Työskentelyn loppuaika
 kuvaus       | merkkijono [max 400) | Valinnainen kuvaus työtunnille
 
 Tietokohde: Ryhma
+
 Atribuutti   | Arvojoukko     |  Kuvaus
 -------------|-----------------|--------
 nimi         | merkkijono (max 50) | Ryhmän nimi

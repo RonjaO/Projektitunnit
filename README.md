@@ -6,4 +6,11 @@ Työn aiheena on projektituntien seurantajärjestelmä. Järjestelmään rekiste
 
 Sovelluksen osoite: http://t-roxoja.users.cs.helsinki.fi/Projektitunnit-1.0-SNAPSHOT/
 
+Muut sivut:
+
+- http://t-roxoja.users.cs.helsinki.fi/Projektitunnit-1.0-SNAPSHOT/uusi_projekti.html
+- http://t-roxoja.users.cs.helsinki.fi/Projektitunnit-1.0-SNAPSHOT/raportti.html
+- http://t-roxoja.users.cs.helsinki.fi/Projektitunnit-1.0-SNAPSHOT/projektit.html
+- http://t-roxoja.users.cs.helsinki.fi/Projektitunnit-1.0-SNAPSHOT/uusi_ryhma.html
+
 Dokumentaatio: https://github.com/RonjaO/Projektitunnit/blob/master/doc/dokumentaatio.md

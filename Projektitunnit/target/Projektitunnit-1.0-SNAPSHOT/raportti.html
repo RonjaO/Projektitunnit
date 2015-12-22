@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Projektitunnit</title>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" type="text/css" href="styles.css">
+    </head>
+
+    <body>
+        <div class="canvas">
+            <header class="clearfix">
+                <h1> Projektituntiseuranta</h1>
+                <div class="kulma">
+                    <button>Muokkaa tietojasi</button>
+                    <button>Kirjaudu ulos</button>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#">Jatka työskentelyä</a></li>
+                        <li><a href="#">Tuntiraportti</a></li>
+                        <li><a href="#">Luo projekti</a></li>
+                        <li><a href="#">Luo ryhmä</a></li>
+                    </ul>
+                </nav> 
+            </header>
+
+            <div class="sisalto">
+                <h1>Tuntiraportit</h1>
+
+                <p>Klikkaamalla projektin nimeä näet tarkemman tuntierittelyn projektista.</p>
+
+                <table>
+                    <thead>
+                        <tr> <th>Projekti</th> <th>Tunteja yht.</th> </tr>
+                    </thead>
+                    <tbody>
+                        <tr> <td colspan="2">Ei projekteja</td> </tr>
+                    </tbody>
+                </table>
+
+                <div class="projekti">
+                    <h3>Projektin tiedot: [projektin nimi]</h3>
+                    <table>
+                        <thead>
+                            <tr> <td>Päiväys</td> <td>yhteensä</td> <td>Kommentit</td> </tr>
+                        </thead>
+                        <tbody>
+                            <tr> <td colspan="3">Ei valittua projektia</> </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </body>
+</html>

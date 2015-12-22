@@ -7,23 +7,41 @@
     </head>
 
     <body>
-        <header>
-            <h1> Projektituntiseuranta</h1>
-            <!--#include virtual="nav.html"--> 
-        </header>
-        <div class="sisalto">
-            <h1>Luo uusi projekti</h1>
+        <div class="canvas">
+            <header class="clearfix">
+                <h1> Projektituntiseuranta</h1>
+                <div class="kulma">
+                    <button>Muokkaa tietojasi</button>
+                    <button>Kirjaudu ulos</button>
+                </div>
 
-            <p>Anna projektillesi nimi. Halutessasi voit myös kuvailla projektiasi.</p>
+                <nav>
+                    <ul>
+                        <li><a href="#">Jatka työskentelyä</a></li>
+                        <li><a href="#">Tuntiraportti</a></li>
+                        <li><a href="#">Luo projekti</a></li>
+                        <li><a href="#">Luo ryhmä</a></li>
+                    </ul>
+                </nav> 
+            </header>
 
-            <form>
-                <table>
-                    <tr> <td>* Projektin nimi: </td> <td> <input type="text" /> </td> </tr>
-                    <tr> <td>Projektin kuvaus: </td> <td> <input type="text" /> </td> </tr>
-                </tablE>
-                <input type="submit" value="Luo projekti" />
-            </form>
+            <div class="sisalto">
+                <h1>Luo uusi projekti</h1>
 
+                <p>Anna projektillesi nimi. Halutessasi voit myös kuvailla projektiasi.</p>
+
+                <form>
+                    <table>
+                        <tr> <td>* Projektin nimi: </td>
+                             <td> <input type="text" class="project-name" /> </td>
+                        </tr>
+                        <tr> <td>Projektin kuvaus: </td>
+                             <td> <textarea class="project-desc"></textarea>
+                                  <input type="submit" class="new-project-submit" value="Luo projekti" /> </td> </tr>
+                    </table>
+                </form>
+
+            </div>
         </div>
     </body>
 </html>

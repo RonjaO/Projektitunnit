@@ -1,0 +1,26 @@
+body {
+    background-color: #666;
+    margin: 0;
+    padding: 0
+}
+
+.sisalto {
+    background-color: #fff;
+    width: 800px;
+    margin: 0 auto
+}
+
+input [type=submit] {
+    background-color: #ffbb88;
+    border-radius: 10px
+}
+
+header {
+    backbround-color: #ffbb88;
+    margin: 0;
+    border-bottom: 1px solid #999
+}
+
+nav ul {
+    display: inline
+}

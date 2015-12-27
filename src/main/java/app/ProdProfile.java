@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;import org.springfra
 
 
 @Configuration
-@Profile("prod")
+//@Profile("prod")
 public class ProdProfile {
 
     @Bean

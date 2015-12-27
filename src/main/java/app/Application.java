@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Import;
 
 
 @SpringBootApplication
-@Import({ProdProfile.class})
+//@Import({ProdProfile.class})
 public class Application {
 
     private static final Logger log = LoggerFactory.getLogger(Application.class);

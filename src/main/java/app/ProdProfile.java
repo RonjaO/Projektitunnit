@@ -14,7 +14,7 @@ public class ProdProfile {
 
     @Bean
     //@Primary
-    public DataSource dataSource() {
+    public DataSource dataSource() throws URISyntaxException {
         URI dbUri = new URI(System.getenv().get("DATABASE_URL"));
         
         String username = dbUri.getUserInfo().split(":")[0];

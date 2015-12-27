@@ -7,8 +7,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import javax.annotation.PostConstruct;
+import org.springframework.context.annotation.Import;
+
 
 @SpringBootApplication
+@Import({ProdProfile.class})
 public class Application {
 
     private static final Logger log = LoggerFactory.getLogger(Application.class);
@@ -23,7 +26,7 @@ public class Application {
     
     @PostConstruct
     public void run() throws Exception {
-        //jdbcTemplate.execute("DROP TABLE customers IF EXISTS");
+        jdbcTemplate.execute("DROP TABLE customers IF EXISTS");
 
         // log.info("jotain");
         // jdbcTemplate.query(

@@ -25,6 +25,10 @@ public class ProjektiRepository {
         return jdbc.queryForObject("SELECT * FROM Projekti Where id = ?", projektiMapper, id);
     }
     
+    public List<Projekti> findAll() {
+        return jdbc.queryForObject("SELECT * FROM projektit", projektiMapper);
+    }
+    
     private static final RowMapper<Projekti> projektiMapper = new RowMapper<Projekti>() {
         public Projekti mapRow(ResultSet rs, int rowNum) throws SQLException {
             Projekti projekti = new Projekti(rs.getString("nimi"));

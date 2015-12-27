@@ -15,9 +15,17 @@ public class ProdProfile {
     @Bean
     //@Primary
     public DataSource dataSource() {
+        URI dbUri = new URI(System.getenv().get("DATABASE_URL"));
+        
+        String username = dbUri.getUserInfo().split(":")[0];
+        String password = dbUri.getUserInfo().split(":")[1];
+        String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+
         return DataSourceBuilder
             .create()
-            .url(System.getenv().get("DATABASE_URL"))
+            .url(dbUrl)
+            .username(username)
+            .password(password)
             .build();
     }
     

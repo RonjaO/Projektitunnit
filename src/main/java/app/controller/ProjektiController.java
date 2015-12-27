@@ -12,7 +12,7 @@ import java.lang.*;
 
 @Controller
 @RequestMapping("/projektit")
-puvlic class ProjektiController {
+public class ProjektiController {
     
     @Autowired
     private ProjektiRepository projektit;

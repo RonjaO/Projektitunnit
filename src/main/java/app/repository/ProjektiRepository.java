@@ -26,7 +26,7 @@ public class ProjektiRepository {
     }
     
     public List<Projekti> findAll() {
-        return jdbc.queryForObject("SELECT * FROM projektit", projektiMapper);
+        return jdbc.query("SELECT * FROM projekti", projektiMapper);
     }
     
     private static final RowMapper<Projekti> projektiMapper = new RowMapper<Projekti>() {

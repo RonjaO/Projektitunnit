@@ -17,7 +17,7 @@ public class ProdProfile {
     public DataSource dataSource() {
         return DataSourceBuilder
             .create()
-            .url(System.getenv().get("spring.datasource.url"))
+            .url(System.getenv().get("DATABASE_URL"))
             .build();
     }
     

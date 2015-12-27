@@ -26,7 +26,7 @@ public class Application {
     
     @PostConstruct
     public void run() throws Exception {
-        jdbcTemplate.execute("DROP TABLE customers IF EXISTS");
+        // jdbcTemplate.execute("DROP TABLE customers IF EXISTS");
 
         // log.info("jotain");
         // jdbcTemplate.query(

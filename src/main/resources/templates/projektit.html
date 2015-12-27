@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Projektitunnit</title>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" type="text/css" href="styles.css">
+    </head>
+
+    <body>
+        <div class="canvas">
+            <header class="clearfix">
+                <h1> Projektituntiseuranta</h1>
+                <div class="kulma">
+                    <button>Muokkaa tietojasi</button>
+                    <button>Kirjaudu ulos</button>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#">Jatka työskentelyä</a></li>
+                        <li><a href="#">Tuntiraportti</a></li>
+                        <li><a href="#">Luo projekti</a></li>
+                        <li><a href="#">Luo ryhmä</a></li>
+                    </ul>
+                </nav> 
+            </header>
+
+            <div class="sisalto">
+                <h1>Jatka työskentelyä</h1>
+
+                <p>Valitse projekti, jonka parissa jatkat. Paina sitten "aloita".</p>
+
+                <form>
+                    <h3>Omat projektisi</h3>
+                    <table>
+                        <thead>
+                            <tr> <th>Projekti</th> <th>Tunteja yht.</th> </tr>
+                        </thead>
+                        <tbody>
+                            <tr> <td colspan="2">Ei projekteja</td> </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Ryhmäprojektit</h3>
+                    <table>
+                        <thead>
+                            <tr> <th>Projekti</th> <th>Ryhmä</th> <th>Tuntisi yht.</th> </tr>
+                        </thead>
+                        <tbody>
+                            <tr> <td colspan="3">Ei projekteja</td> </tr>
+                        </tbody>
+                    </table>
+                    <input type="submit" value="aloita" disabled="disabled"/>
+                </form>
+
+            </div>
+        </div>
+    </body>
+</html>

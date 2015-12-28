@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Projektitunnit</title>
+        <meta charset="UTF-8" />
+        <link href="../../webapp/static/css/styles.css" th:href="@{/static/css/styles.css}" rel="stylesheet" type="text/css" />
+    </head>
+
+    <body>
+        <div class="canvas">
+            <div th:replace="fragments/header :: header"> 
+            </div>
+
+            <div class="sisalto">
+                <h2>Kaikki projektisi</h2>
+
+                <table>
+                    <thead>
+                        <tr> <th>Projekti</th> <th>Kuvaus</th> <td>Muokkaa</td> <td>Poista</td></tr>
+                    </thead>
+                    <tbody>
+                        <tr th:if="${projektit.empty}"> <td colspan="2">Ei projekteja</td> </tr>
+                        <tr th:each="projekti : ${projektit}"> 
+                            <td th:text="${projekti.nimi}">nimi</td> <td th:text="${projekti.kuvaus}">kuvaus</td> 
+                            <td><a th:href="@{/projektit/{id}(id=${projekti.id})}">Muokkaa</a> </td> 
+                            <td>  <form th:action="@{/projektit/{id}(id=${projekti.id})}" th:method="delete"> 
+                                <input type="submit" value="Poista"/></form> </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </body>
+</html>

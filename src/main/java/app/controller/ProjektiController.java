@@ -38,4 +38,11 @@ public class ProjektiController {
         return "uusi_projekti";
     }
     
+    @RequestMapping(method=RequestMethod.GET, value="/kaikki")
+    public String muokkaaProjekteja(Model model) {
+        model.addAttribute("projektit", projektit.findAll());
+        
+        return "kaikki_projektit";
+    }
+    
 }

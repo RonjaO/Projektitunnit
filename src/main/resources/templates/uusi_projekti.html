@@ -8,23 +8,8 @@
 
     <body>
         <div class="canvas">
-            <!--#include virtual="header.html"--> 
-            <header class="clearfix">
-                <h1> Projektituntiseuranta</h1>
-                <div class="kulma">
-                    <button>Muokkaa tietojasi</button>
-                    <button>Kirjaudu ulos</button>
-                </div>
-
-                <nav>
-                    <ul>
-                        <li><a href="#">Jatka työskentelyä</a></li>
-                        <li><a href="#">Tuntiraportti</a></li>
-                        <li><a href="#">Luo projekti</a></li>
-                        <li><a href="#">Luo ryhmä</a></li>
-                    </ul>
-                </nav> 
-            </header>
+            <div th:replace="fragments/header :: header"> 
+            </div>
 
             <div class="sisalto">
                 <h1>Luo uusi projekti</h1>

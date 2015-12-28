@@ -8,7 +8,7 @@ public class Projekti {
     private String nimi;
     private String kuvaus;
     
-    public Projekti(String nimi) {
+    public Projekti(String nimi, String kuvaus) {
         this.nimi = nimi;
     }
     

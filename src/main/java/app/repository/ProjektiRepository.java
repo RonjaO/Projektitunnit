@@ -37,7 +37,7 @@ public class ProjektiRepository {
     }
     
     public void delete(int id) {
-        String sql = "DELETE FROM projektit WHERE id = " + id + ";";
+        String sql = "DELETE FROM projekti WHERE id = " + id + ";";
         
         jdbc.update(sql);
     }

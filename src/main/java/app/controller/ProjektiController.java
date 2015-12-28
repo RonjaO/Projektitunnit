@@ -1,9 +1,11 @@
 package app.controller;
 
 import app.repository.ProjektiRepository;
+import app.domain.Projekti;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,5 +26,11 @@ public class ProjektiController {
         return "projektit";
     }
     
+    @RequestMapping(value="/uusi_projekti", method=RequestMethod.POST)
+    public String create(@ModelAttribute Projekti projekti) {
+        projektit.save(projekti);
+        
+        return "redirect:/projektit";
+    }
     
 }

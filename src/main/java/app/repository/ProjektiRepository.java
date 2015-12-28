@@ -29,12 +29,20 @@ public class ProjektiRepository {
         return jdbc.query("SELECT * FROM projekti", projektiMapper);
     }
     
+    public void save(Projekti projekti) {
+        String sql = "INSERT INTO projekti(nimi, kuvaus) VALUES ('" +
+            projekti.getNimi() + "', '"  + projekti.getKuvaus() + "');";
+        
+        jdbc.update(sql);
+    }
+    
+    
     private static final RowMapper<Projekti> projektiMapper = new RowMapper<Projekti>() {
         public Projekti mapRow(ResultSet rs, int rowNum) throws SQLException {
             Projekti projekti = new Projekti(rs.getString("nimi"));
             projekti.setId(rs.getInt("id"));
-            projekti.setOmistaja_kayttaja(rs.getString("omistaja_kayttaja"));
-            projekti.setOmistaja_ryhma(rs.getString("omistaja_ryhma"));
+            projekti.setOmistaja_kayttaja(rs.getInt("omistaja_kayttaja"));
+            projekti.setOmistaja_ryhma(rs.getInt("omistaja_ryhma"));
             projekti.setKuvaus(rs.getString("kuvaus"));
             
             return projekti;

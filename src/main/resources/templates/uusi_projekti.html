@@ -3,8 +3,7 @@
     <head>
         <title>Projektitunnit</title>
         <meta charset="UTF-8" />
-        <link rel="stylesheet" type="text/css" href="styles.css">
-    </head>
+        <link href="../../webapp/static/css/styles.css" th:href="@{/static/css/styles.css}" rel="stylesheet" type="text/    </head>
 
     <body>
         <div class="canvas">
@@ -30,13 +29,13 @@
 
                 <p>Anna projektillesi nimi. Halutessasi voit myös kuvailla projektiasi.</p>
 
-                <form>
+                <form method="POST" th:action="@{/projektit/uusi_projekti}" action="/projektit/uusi_projekti">
                     <table>
-                        <tr> <td>* Projektin nimi: </td>
-                             <td> <input type="text" class="project-name" /> </td>
+                        <tr> <td>Projektin nimi: * <</td>
+                             <td> <input type="text" name="nimi" class="project-name" /> </td>
                         </tr>
                         <tr> <td>Projektin kuvaus: </td>
-                             <td> <textarea class="project-desc"></textarea>
+                             <td> <textarea name="kuvaus" class="project-desc"></textarea>
                                   <input type="submit" class="new-project-submit" value="Luo projekti" /> </td> </tr>
                     </table>
                 </form>

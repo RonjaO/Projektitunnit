@@ -1,6 +1,7 @@
 CREATE TABLE Kayttaja (
+    id SERIAL PRIMARY KEY,
     nimi varchar(50) NOT NULL,
-    email varchar(50) PRIMARY KEY,
+    email varchar(50) NOT NULL,
     password varchar(50) NOT NULL
 );
 
@@ -11,13 +12,13 @@ CREATE TABLE Ryhma (
 );
 
 CREATE TABLE Kayttaja_Ryhma (
-    kayttaja varchar(50) REFERENCES Kayttaja(email)NOT NULL,
+    kayttaja integer REFERENCES Kayttaja(id)NOT NULL,
     ryhma integer REFERENCES Ryhma(id)NOT NULL
 );
 
 CREATE TABLE Projekti (
     id SERIAL PRIMARY KEY,
-    omistaja_kayttaja varchar(50) REFERENCES Kayttaja(email),
+    omistaja_kayttaja integer REFERENCES Kayttaja(id),
     omistaja_ryhma integer REFEReNCES Ryhma(id),
     nimi varchar(50) NOT NULL,
     kuvaus varchar(200)
@@ -25,7 +26,7 @@ CREATE TABLE Projekti (
 
 CREATE TABLE Tunti (
     id SERIAL PRIMARY KEY,
-    kayttaja varchar(50) REFERENCES Kayttaja(email) NOT NULL,
+    kayttaja integer REFERENCES Kayttaja(id) NOT NULL,
     projekti_id INTEGER REFERENCES Projekti(id) NOT NULL,
     alkuaika timestamp NOT NULL,
     loppuaika timestamp,

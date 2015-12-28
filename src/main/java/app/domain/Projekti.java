@@ -3,8 +3,8 @@ package app.domain;
 public class Projekti {
     
     private int id;
-    private String omistaja_kayttaja;
-    private String omistaja_ryhma;
+    private int omistaja_kayttaja;
+    private int omistaja_ryhma;
     private String nimi;
     private String kuvaus;
     
@@ -20,19 +20,19 @@ public class Projekti {
         this.id = id;
     }
     
-    public String getOmistaja_kayttaja() {
+    public int getOmistaja_kayttaja() {
         return this.omistaja_kayttaja;
     }
     
-    public void setOmistaja_kayttaja(String omistaja) {
+    public void setOmistaja_kayttaja(int omistaja) {
         this.omistaja_kayttaja = omistaja;
     }
     
-    public String getOmistaja_ryhma() {
+    public int getOmistaja_ryhma() {
         return this.omistaja_ryhma;
     }
     
-    public void setOmistaja_ryhma(String omistaja) {
+    public void setOmistaja_ryhma(int omistaja) {
         this.omistaja_ryhma = omistaja;
     }
     

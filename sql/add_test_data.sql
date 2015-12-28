@@ -4,5 +4,5 @@ INSERT INTO Kayttaja (nimi, email, password) VALUES ('anna', 'anna@example.com',
 
 INSERT INTO Projekti(nimi, kuvaus) VALUES ('Tietokantasovellus', 'aineopintojen harkkatyö');
 
-INSERT INTO Projekti(omistaja_kayttaja, nimi, kuvaus) VALUES ('anna@example.com', 'Matikka', 'Matematiikan tehtävät kurssilla xyy');
+INSERT INTO Projekti(omistaja_kayttaja, nimi, kuvaus) VALUES (2, 'Matikka', 'Matematiikan tehtävät kurssilla xyy');
 

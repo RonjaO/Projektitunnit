@@ -3,27 +3,12 @@
     <head>
         <title>Projektitunnit</title>
         <meta charset="UTF-8" />
-        <link rel="stylesheet" type="text/css" href="styles.css">
+        <link href="../../webapp/static/css/styles.css" th:href="@{/static/css/styles.css}" rel="stylesheet" type="text/css" />
     </head>
 
     <body>
         <div class="canvas">
-            <header class="clearfix">
-                <h1> Projektituntiseuranta</h1>
-                <div class="kulma">
-                    <button>Muokkaa tietojasi</button>
-                    <button>Kirjaudu ulos</button>
-                </div>
-
-                <nav>
-                    <ul>
-                        <li><a href="#">Jatka työskentelyä</a></li>
-                        <li><a href="#">Tuntiraportti</a></li>
-                        <li><a href="#">Luo projekti</a></li>
-                        <li><a href="#">Luo ryhmä</li>
-                    </ul>
-                </nav> 
-            </header>
+            <!--#include virtual="header.html"--> 
 
             <div class="sisalto">
                 <h1>Luo uusi projekti</h1>

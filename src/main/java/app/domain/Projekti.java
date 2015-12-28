@@ -8,6 +8,10 @@ public class Projekti {
     private String nimi;
     private String kuvaus;
     
+    public Projekti() {
+        
+    }
+    
     public Projekti(String nimi, String kuvaus) {
         this.nimi = nimi;
         this.kuvaus = kuvaus;

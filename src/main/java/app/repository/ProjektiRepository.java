@@ -39,11 +39,10 @@ public class ProjektiRepository {
     
     private static final RowMapper<Projekti> projektiMapper = new RowMapper<Projekti>() {
         public Projekti mapRow(ResultSet rs, int rowNum) throws SQLException {
-            Projekti projekti = new Projekti(rs.getString("nimi"));
+            Projekti projekti = new Projekti(rs.getString("nimi"), rs.getString("kuvaus"));
             projekti.setId(rs.getInt("id"));
             projekti.setOmistaja_kayttaja(rs.getInt("omistaja_kayttaja"));
             projekti.setOmistaja_ryhma(rs.getInt("omistaja_ryhma"));
-            projekti.setKuvaus(rs.getString("kuvaus"));
             
             return projekti;
         }

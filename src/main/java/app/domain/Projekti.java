@@ -10,6 +10,7 @@ public class Projekti {
     
     public Projekti(String nimi, String kuvaus) {
         this.nimi = nimi;
+        this.kuvaus = kuvaus;
     }
     
     public int getId() {

@@ -33,4 +33,9 @@ public class ProjektiController {
         return "redirect:/projektit";
     }
     
+    @RequestMapping(value="/uusi_projekti" method=RequestMethod.GET)
+    public String uusiProjekti() {
+        return "uusi_projekti";
+    }
+    
 }

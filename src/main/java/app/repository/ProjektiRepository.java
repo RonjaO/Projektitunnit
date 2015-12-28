@@ -36,6 +36,12 @@ public class ProjektiRepository {
         jdbc.update(sql);
     }
     
+    public void delete(int id) {
+        String sql = "DELETE FROM projektit WHERE id = " + id + ";";
+        
+        jdbc.update(sql);
+    }
+    
     
     private static final RowMapper<Projekti> projektiMapper = new RowMapper<Projekti>() {
         public Projekti mapRow(ResultSet rs, int rowNum) throws SQLException {

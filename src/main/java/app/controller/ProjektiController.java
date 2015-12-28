@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.PathVariable;
 import java.lang.*;
 
 @Controller
@@ -43,6 +44,13 @@ public class ProjektiController {
         model.addAttribute("projektit", projektit.findAll());
         
         return "kaikki_projektit";
+    }
+    
+    @RequestMapping(value="/{id}(id)", method=RequestMethod.DELETE)
+    public String delete(@PathVariable int id) {
+        projektit.delete(id);
+        
+        return "redirect:/projektit/kaikki";
     }
     
 }

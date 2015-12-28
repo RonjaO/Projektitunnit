@@ -46,7 +46,7 @@ public class ProjektiController {
         return "kaikki_projektit";
     }
     
-    @RequestMapping(value="/{id}(id)", method=RequestMethod.DELETE)
+    @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
     public String delete(@PathVariable int id) {
         projektit.delete(id);
         

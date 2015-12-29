@@ -14,12 +14,12 @@
             <div class="sisalto">
                 <h2>Kaikki projektisi</h2>
 
-                <table>
+                <table class="taulukko">
                     <thead>
                         <tr> <th>Projekti</th> <th>Kuvaus</th> <td>Muokkaa</td> <td>Poista</td></tr>
                     </thead>
                     <tbody>
-                        <tr th:if="${projektit.empty}"> <td colspan="2">Ei projekteja</td> </tr>
+                        <tr th:if="${projektit.empty}"> <td colspan="4">Ei projekteja</td> </tr>
                         <tr th:each="projekti : ${projektit}"> 
                             <td th:text="${projekti.nimi}">nimi</td> <td th:text="${projekti.kuvaus}">kuvaus</td> 
                             <td><a th:href="@{/projektit/{id}(id=${projekti.id})}">Muokkaa</a> </td> 

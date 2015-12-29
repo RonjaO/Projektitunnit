@@ -75,6 +75,8 @@ header nav li {
 
 input[type=submit] {
     background-color: #ffbb88;
+    display: block;
+    width: 200px;
 }
 
 .project-name {
@@ -89,4 +91,21 @@ input[type=submit] {
 .new-project-submit {
     display: block;
     width: 200px;
+}
+
+.taulukko {
+    border: 1px solid #888;
+}
+
+.taulukko thead {
+    background-color: #aaf;
+}
+
+.taulukko th {
+    margin-right: 0;
+}
+
+
+#tyotila .tyotila, #raportti .raportti,#uusi_projekti .uusi_projekti, #ryhma .ryhma {
+    color: #00f;
 }

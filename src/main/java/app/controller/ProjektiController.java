@@ -53,4 +53,11 @@ public class ProjektiController {
         return "redirect:/projektit/kaikki";
     }
     
+    @RequestMapping(value="/raportti", method=RequestMethod.GET)
+    public String raportti(Model model) {
+        model.addAttribute("projektit", projektit.findAll());
+        
+        return "raportti";
+    }
+    
 }

@@ -6,19 +6,19 @@
         <link href="../../webapp/static/css/styles.css" th:href="@{/static/css/styles.css}" rel="stylesheet" type="text/css" />
     </head>
 
-    <body>
+    <body id="tyotila">
         <div class="canvas">
             <div th:replace="fragments/header :: header"> 
             </div>
 
             <div class="sisalto">
-                <h1>Jatka työskentelyä</h1>
+                <h2>Jatka työskentelyä</h2>
 
                 <p>Valitse projekti, jonka parissa jatkat. Paina sitten "aloita".</p>
 
                 <form>
                     <h3>Omat projektisi</h3>
-                    <table>
+                    <table class="taulukko">
                         <thead>
                             <tr> <th>Projekti</th> <th>Tunteja yht.</th> </tr>
                         </thead>
@@ -29,7 +29,7 @@
                     </table>
 
                     <h3>Ryhmäprojektit</h3>
-                    <table>
+                    <table class="taulukko">
                         <thead>
                             <tr> <th>Projekti</th> <th>Ryhmä</th> <th>Tuntisi yht.</th> </tr>
                         </thead>

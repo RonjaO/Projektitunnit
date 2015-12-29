@@ -15,10 +15,10 @@
 
             <nav>
                 <ul>
-                    <li><a href="#">Jatka työskentelyä</a></li>
-                    <li><a href="#">Tuntiraportti</a></li>
-                    <li><a href="#">Luo projekti</a></li>
-                    <li><a href="#">Luo ryhmä</a></li>
+                    <li><a class="tyotila" th:href="@{/projektit}">Jatka työskentelyä</a></li>
+                    <li><a class="raportti" th:href="@{/projektit/raportti}">Tuntiraportti</a></li>
+                    <li><a class="uusi_projekti" th:href="@{/projektit/uusi_projekti}">Luo projekti</a></li>
+                    <li><a class="ryhma" th:href="@{/uusi_ryhma}">Luo ryhmä</a></li>
                 </ul>
             </nav> 
         </header>

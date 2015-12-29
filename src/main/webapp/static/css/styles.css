@@ -93,19 +93,27 @@ input[type=submit] {
     width: 200px;
 }
 
+table {
+    border-collapse: collapse;
+}
+
 .taulukko {
     border: 1px solid #888;
 }
 
 .taulukko thead {
-    background-color: #aaf;
+    background-color: #bcbcff;
 }
 
-.taulukko th {
-    text-align: leftx;
+.taulukko th,
+.taulukko td {
+    text-align: left;
+    padding: 2px 4px;
 }
 
-
-#tyotila .tyotila, #raportti .raportti,#uusi_projekti .uusi_projekti, #ryhma .ryhma {
-    color: #00f;
+#tyotila .tyotila,
+#raportti .raportti,
+#uusi_projekti .uusi_projekti,
+#ryhma .ryhma {
+    color: #ffaa44;
 }

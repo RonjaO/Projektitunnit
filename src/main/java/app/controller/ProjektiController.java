@@ -62,7 +62,7 @@ public class ProjektiController {
     
     @RequestMapping(value="/{id}/muokkaa", method=RequestMethod.PUT)
     public String update(@PathVariable int id, @ModelAttribute Projekti projekti) {
-        projektit.update(projekti);
+        projektit.update(projekti, id);
         
         return "redirect:/kaikki";
     }

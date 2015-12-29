@@ -42,6 +42,12 @@ public class ProjektiRepository {
         jdbc.update(sql);
     }
     
+    public void update(Projekti projekti) {
+        String sql = "UPDATE Projekti SET nimi=" + projekti.getNimi() + ", kuvaus=" + projekti.getKuvaus() + " WHERE id=" + projekti.getId() + ";";
+        
+        jdbc.update(sql);
+    }
+    
     
     private static final RowMapper<Projekti> projektiMapper = new RowMapper<Projekti>() {
         public Projekti mapRow(ResultSet rs, int rowNum) throws SQLException {

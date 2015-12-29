@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Projektitunnit</title>
+        <meta charset="UTF-8" />
+        <link href="../../webapp/static/css/styles.css" th:href="@{/static/css/styles.css}" rel="stylesheet" type="text/css" />
+    </head>
+
+    <body id="uusi_projekti">
+        <div class="canvas">
+            <div th:replace="fragments/header :: header"> 
+            </div>
+
+            <div class="sisalto">
+                <h2>Muokkaa projektia</h2>
+
+                <p>Anna projektillesi nimi. Halutessasi voit myös kuvailla projektiasi.</p>
+
+                <form method="POST" th:action="@{/projektit/{id}/muokkaa(id=${projekti.id})}}" action="/projektit/1/muokkaa">
+                    <table>
+                        <tr> <td>Projektin nimi: * </td>
+                             <td> <input type="text" name="nimi" class="project-name" th:value="${projekti.nimi}" /> </td>
+                        </tr>
+                        <tr> <td>Projektin kuvaus: </td>
+                             <td> <textarea name="kuvaus" class="project-desc" th:value="${projekti.kuvaus}"></textarea>
+                                  <input type="submit" class="new-project-submit" value="Muokkaa" /> </td> </tr>
+                    </table>
+                </form>
+
+            </div>
+        </div>
+    </body>
+</html>

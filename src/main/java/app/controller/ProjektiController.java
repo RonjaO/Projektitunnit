@@ -53,6 +53,20 @@ public class ProjektiController {
         return "redirect:/projektit/kaikki";
     }
     
+    @RequestMapping(value="/{id}/muokkaa", method=RequestMethod.GET)
+    public String muokkaa(@PathVariable int id, Model model) {
+        model.addAttribute("projekti", projektit.findOne(id));
+        
+        return "muokkaa_projektia";
+    }
+    
+    @RequestMapping(value="/{id}/muokkaa", method=RequestMethod.PUT)
+    public String update(@PathVariable int id, @ModelAttribute Projekti projekti) {
+        projektit.update(projekti);
+        
+        return "redirect:/kaikki";
+    }
+    
     @RequestMapping(value="/raportti", method=RequestMethod.GET)
     public String raportti(Model model) {
         model.addAttribute("projektit", projektit.findAll());

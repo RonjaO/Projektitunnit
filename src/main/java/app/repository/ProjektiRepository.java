@@ -43,10 +43,9 @@ public class ProjektiRepository {
     }
     
     public void update(Projekti projekti, int id) {
-        String sql = "UPDATE Projekti SET nimi=" + projekti.getNimi() + " WHERE id=" + id + ";";
-        sql = sql + "UPDATE Projekti SET kuvaus=" + projekti.getKuvaus() + " WHERE id=" + id + ";";
+        String sql = "UPDATE Projekti SET nimi=?, kuvaus=? WHERE id=?";
         
-        jdbc.update(sql);
+        jdbc.update(sql, projekti.getNimi(), projekti.getKuvaus(), id);
     }
     
     

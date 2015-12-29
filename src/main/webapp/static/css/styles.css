@@ -102,7 +102,7 @@ input[type=submit] {
 }
 
 .taulukko th {
-    margin-right: 0;
+    text-align: leftx;
 }
 
 

@@ -26,20 +26,19 @@ public class ProjektiRepository {
     }
     
     public List<Projekti> findAll() {
-        return jdbc.query("SELECT * FROM projekti", projektiMapper);
+        return jdbc.query("SELECT * FROM projekti ORDER BY nimi", projektiMapper);
     }
     
     public void save(Projekti projekti) {
-        String sql = "INSERT INTO projekti(nimi, kuvaus) VALUES ('" +
-            projekti.getNimi() + "', '"  + projekti.getKuvaus() + "');";
+        String sql = "INSERT INTO projekti(nimi, kuvaus) VALUES (?, ?)";
         
-        jdbc.update(sql);
+        jdbc.update(sql, projekti.getNimi(), projekti.getKuvaus());
     }
     
     public void delete(int id) {
-        String sql = "DELETE FROM projekti WHERE id = " + id + ";";
+        String sql = "DELETE FROM projekti WHERE id = ?";
         
-        jdbc.update(sql);
+        jdbc.update(sql, id);
     }
     
     public void update(Projekti projekti, int id) {

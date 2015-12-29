@@ -60,7 +60,7 @@ public class ProjektiController {
         return "muokkaa_projektia";
     }
     
-    @RequestMapping(value="/{id}/muokkaa", method=RequestMethod.PUT)
+    @RequestMapping(value="/{id}/muokkaa", method=RequestMethod.POST)
     public String update(@PathVariable int id, @ModelAttribute Projekti projekti) {
         projektit.update(projekti, id);
         

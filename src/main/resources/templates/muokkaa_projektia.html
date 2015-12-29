@@ -16,13 +16,13 @@
 
                 <p>Anna projektillesi nimi. Halutessasi voit myös kuvailla projektiasi.</p>
 
-                <form method="PUT" th:action="@{/projektit/{id}/muokkaa(id=${projekti.id})}" action="/projektit/1/muokkaa">
+                <form method="POST" th:action="@{/projektit/{id}/muokkaa(id=${projekti.id})}" action="/projektit/1/muokkaa">
                     <table>
                         <tr> <td>Projektin nimi: * </td>
                              <td> <input type="text" name="nimi" class="project-name" th:value="${projekti.nimi}" /> </td>
                         </tr>
                         <tr> <td>Projektin kuvaus: </td>
-                             <td> <textarea name="kuvaus" class="project-desc" th:value="${projekti.kuvaus}"></textarea>
+                             <td> <textarea name="kuvaus" class="project-desc" th:value="${projekti.kuvaus}"> </textarea
                                   <input type="submit" class="new-project-submit" value="Muokkaa" /> </td> </tr>
                     </table>
                 </form>

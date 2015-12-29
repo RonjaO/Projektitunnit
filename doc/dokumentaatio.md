@@ -9,7 +9,7 @@ Ajatuksena on, että työtuntejaan ei tarvitse itse laskea: järjestelmästä pa
 
 ##Toteutus- ja toimintaympäristö
 
-Järjestelmä toteutetaan Helsingin yliopiston tietojenkäsittelytieteen laitoksen users-palvelimella Tomcat-palvelimen alla. Ohjelmointikielenä on Java ja käytössä Spring Boot -framework. Tietokantana käytetään postgreSQL:ää. Yhteys tietokantaan hoidetaan JDBC-kirjaston Connection-oliolla.
+Järjestelmä toteutetaan Herokun palvelimella. Ohjelmointikielenä on Java ja käytössä Spring Boot -framework. Tietokantana käytetään postgreSQL:ää, joka pyörii Herokun kautta Amazonin palvelimella. Yhteys tietokantaan hoidetaan JDBC-kirjaston kautta.
 
 
 #2. YLEISKUVA JÄRJESTELMÄSTÄ
@@ -85,8 +85,8 @@ Kirjautuminen, rekisteröityminen
 
 ##Käsitekaavio
 [Kayttaja]-*[Projekti]
-[Kayttaja]-*[Tyotunti]
-[Tyotunti]*-[Projekti]
+[Kayttaja]-*[Tunti]
+[Tunti]*-[Projekti]
 [Kayttaja]*-*[Ryhma]
 [Ryhma]-*[Projekti]
 
@@ -106,7 +106,7 @@ Atribuutti   | Arvojoukko     | Kuvaus
 nimi         | Merkkijono (max 50) | Projektin nimi
 kuvaus       | Merkkijono (max 200) | Valinnainen kuvaus projektille
 
-Tietokohde: Tyotunti
+Tietokohde: Tunti
 
 Atribuutti   | Arvojoukko     | Kuvaus
 -------------|----------------|---------
@@ -124,15 +124,15 @@ kuvaus       | merkkijono (max 200) | Valinnainen kuvaus ryhmlle
 #4. Relaatiotietokantakaavio
 
 ```
-[Kayttaja | (pk) sahkoposti; salasana; nimi]
+[Kayttaja | (pk)id; sahkoposti; salasana; nimi]
 [Projekti | (pk)id; (fk) kayttaja:Kayttaja; (fk)ryhma:Ryhma; nimi; kuvaus]
-[Tyotunti | (pk)id; (fk)projekti;  (fk)kayttaja; alkamisaika; loppumisaika; kommentit]
+[Tunti | (pk)id; (fk)projekti:Projekti;  (fk)kayttaja:Kayttaja; alkamisaika; loppumisaika; kommentit]
 [Ryhma | (pk)id; nimi; kuvaus]
-[Kayttaja-Ryhma | (fk)kayttaja:Kayttaja; (fk)ryhmaID]
+[Kayttaja-Ryhma | (fk)kayttaja:Kayttaja; (fk)ryhma:Ryhma]
 
 [Kayttaja]-*[Projekti]
-[Projekti]1-*[Tyotunti]
-[Kayttaja]1-*[Tyotunti]
+[Projekti]1-*[Tunti]
+[Kayttaja]1-*[Tunti]
 [Ryhma]*-*[Kayttaja]
 [Ryhma]-*[Projekti]
 ```

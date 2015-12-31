@@ -41,7 +41,7 @@ public class ProjektiController {
     }
     
     @RequestMapping(value="/uusi_projekti", method=RequestMethod.GET)
-    public String uusiProjekti() {
+    public String uusiProjekti(@ModelAttribute Projekti projekti) {
         return "uusi_projekti";
     }
     

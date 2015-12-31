@@ -19,7 +19,7 @@
                 <form method="POST" th:action="@{/projektit/uusi_projekti}" action="#">
                     <table>
                         <tr> <td>Projektin nimi: * </td>
-                            <td> <input type="text" name="nimi" class="project-name" th:field="*{projekti.nimi}" /> </td>
+                            <td> <input type="text" class="project-name" th:field="*{projekti.nimi}" /> </td>
                             <td th:if="${#fields.hasErrors('nimi')}" th:errors="*{nimi}"> nimi virheviesti </td>
                         </tr>
                         <tr> <td>Projektin kuvaus: </td>

@@ -16,13 +16,15 @@
 
                 <p>Anna projektillesi nimi. Halutessasi voit myös kuvailla projektiasi.</p>
 
-                <form method="POST" th:action="@{/projektit/uusi_projekti}" action="/projektit/uusi_projekti">
+                <form method="POST" th:action="@{/projektit/uusi_projekti}" action="#" th:object="${projekti}">
                     <table>
                         <tr> <td>Projektin nimi: * </td>
-                             <td> <input type="text" name="nimi" class="project-name" /> </td>
+                            <td> <input type="text" name="nimi" class="project-name" th:field="*{nimi}"/> </td>
+                            <td th:if="${#fields.hasErrors('nimi')}" th:errors="*{nimi}">nimi virheviesti</td> 
                         </tr>
                         <tr> <td>Projektin kuvaus: </td>
-                             <td> <textarea name="kuvaus" class="project-desc"></textarea>
+                             <td> <textarea name="kuvaus" class="project-desc" th:field="*{kuvaus}"></textarea>
+                            <td th:if="${#fields.hasErrors('kuvaus')}" th:errors="*{kuvaus}">kuvaus virheviesti</td>
                                   <input type="submit" class="new-project-submit" value="Luo projekti" /> </td> </tr>
                     </table>
                 </form>

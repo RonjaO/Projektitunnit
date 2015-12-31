@@ -22,7 +22,7 @@
                             <td> <input type="text" name="nimi" class="project-name" /> </td>
                         </tr>
                         <tr> <td>Projektin kuvaus: </td>
-                             <td> <textarea name="kuvaus" class="project-desc" th:field="*{kuvaus}"></textarea>
+                             <td> <textarea name="kuvaus" class="project-desc" ></textarea>
                             <td th:if="${#fields.hasErrors('kuvaus')}" th:errors="*{kuvaus}">kuvaus virheviesti</td>
                                   <input type="submit" class="new-project-submit" value="Luo projekti" /> </td> </tr>
                     </table>

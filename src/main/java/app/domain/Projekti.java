@@ -3,8 +3,6 @@ package app.domain;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
-
-
 public class Projekti {
     
     private int id;

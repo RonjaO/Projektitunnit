@@ -17,6 +17,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/projektit").permitAll()
                 .antMatchers("/projektit/*").permitAll()
                 .antMatchers("/").permitAll()
+                    .antMatchers("/*").permitAll()
                 .anyRequest().authenticated();
 
 

@@ -25,7 +25,7 @@
                 <h2>Kirjaudu sisään</h2>
                 <p>Jos sinulla ei ole vielä tunnuksia, <a href="">rekisteröidy</a>.</p>
 
-                <form action="/login" method="POST" name="form">
+                <form th:action="@{/login}" action="/login" method="POST" name="f">
                     <table>
                         <tr> <td>Sähköposti:</td> <td> <input type="text" placeholder="Username" name="username" /> </td> </tr>
                         <tr> <td>Salasana:</td> <td> <input type="password" name="password" placeholder="Password" /> </td> </tr> 

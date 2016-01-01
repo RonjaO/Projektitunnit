@@ -17,11 +17,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/projektit").permitAll()
                 .antMatchers("/projektit/*").permitAll()
                 .antMatchers("/").permitAll()
-                    .antMatchers("/*").permitAll()
+                    .antMatchers("/**").permitAll()
                 .anyRequest().authenticated();
 
 
-        http.formLogin().permitAll();
+        http.formLogin().loginPage("/")permitAll();
     }
 
     @Configuration

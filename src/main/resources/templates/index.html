@@ -25,10 +25,10 @@
                 <h2>Kirjaudu sisään</h2>
                 <p>Jos sinulla ei ole vielä tunnuksia, <a href="">rekisteröidy</a>.</p>
 
-                <form action="/login">
+                <form th:action="@{/login}" action="/login" method="POST">
                     <table>
-                        <tr> <td>Sähköposti:</td> <td> <input type="text" /> </td> </tr>
-                        <tr> <td>Salasana:</td> <td> <input type="password" /> </td> </tr>
+                        <tr> <td>Sähköposti:</td> <td> <input type="text" placeholder="Username" name="username" /> </td> </tr>
+                        <tr> <td>Salasana:</td> <td> <input type="password" name="password" placeholder="Password" /> </td> </tr> 
                         <tr> <td> </td> <td><input type="submit" value="Kirjaudu" /></td> </tr>
                     </table>
                 </form>

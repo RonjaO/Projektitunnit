@@ -24,7 +24,7 @@
                         </tr>
                         <tr> <td>Projektin kuvaus: </td>
                              <td> <textarea th:field="*{kuvaus}" class="project-desc" ></textarea>
-                            <td th:if="${#fields.hasErrors('kuvaus')}" th:errors="*{kuvaus}">kuvaus virheviesti</td>
+                            <p th:if="${#fields.hasErrors('kuvaus')}" th:errors="*{kuvaus}">kuvaus virheviesti</p>
                                   <input type="submit" class="new-project-submit" value="Muokkaa" /> </td> </tr>
                     </table>
                 </form>

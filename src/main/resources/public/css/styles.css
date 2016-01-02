@@ -73,6 +73,10 @@ header nav li {
     right: 10px;
 }
 
+.kulma form {
+    display: inline-block;
+}
+
 input[type=submit] {
     background-color: #ffbb88;
     display: block;

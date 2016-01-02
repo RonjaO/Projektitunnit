@@ -8,9 +8,12 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.core.Ordered;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebMvcSecurity
@@ -24,7 +27,10 @@ public class SecurityConfiguration extends  WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated();
 
 
-        http.formLogin().loginPage("/login").permitAll();
+        http.formLogin()
+            .loginPage("/login")
+            .successHandler(successHandler())
+            .permitAll();
     }
     
     @Override
@@ -44,4 +50,11 @@ public class SecurityConfiguration extends  WebSecurityConfigurerAdapter {
                     .withUser("jack").password("bauer").roles("USER");
         }
     }
+    
+    @Bean 
+    public AuthenticationSuccessHandler successHandler() {
+        SimpleUrlAuthenticationSuccessHandler handler = new SimpleUrlAuthenticationSuccessHandler();
+        handler.setUseReferer(true);
+        return handler; 
+    } 
 }

@@ -28,17 +28,15 @@ public class SecurityConfiguration extends  WebSecurityConfigurerAdapter {
 
 
         http.formLogin()
+            // parametri "true" on tärkeä, ilman sitä näytetään css-tiedosto
             .defaultSuccessUrl("/projektit", true)
             .loginPage("/login")
-            // .successHandler(successHandler())
             .permitAll();
     }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        // Disable Spring Security completely on public static resources.
-        // This is the only way to avoid having "Cache-Control: must-revalidate" in the response, which
-        // both reduces responsiveness, and breaks IE's font loading.
+        // Ignoroidaan public/CSS-kansion osalta Spring security, jotta tyylit toimii
         web.ignoring().antMatchers("/public/**");
     }
 
@@ -52,10 +50,4 @@ public class SecurityConfiguration extends  WebSecurityConfigurerAdapter {
         }
     }
 
-    @Bean
-    public AuthenticationSuccessHandler successHandler() {
-        SimpleUrlAuthenticationSuccessHandler handler = new SimpleUrlAuthenticationSuccessHandler();
-        handler.setUseReferer(true);
-        return handler;
-    }
 }

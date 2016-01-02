@@ -10,7 +10,9 @@
             <h1> Projektituntiseuranta</h1>
             <div class="kulma">
                 <button>Muokkaa tietojasi</button>
-                <button>Kirjaudu ulos</button>
+                <form th:action="@{/logout}" method="post">
+                    <button type="submit">Kirjaudu ulos</button>
+                </form>
             </div>
 
             <nav>

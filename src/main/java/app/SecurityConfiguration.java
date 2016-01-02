@@ -29,7 +29,7 @@ public class SecurityConfiguration extends  WebSecurityConfigurerAdapter {
 
         http.formLogin()
             .loginPage("/login")
-            .successHandler(successHandler())
+            // .successHandler(successHandler())
             .defaultSuccessUrl("/projektit")       
             .permitAll();
     }

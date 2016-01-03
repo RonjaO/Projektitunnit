@@ -47,14 +47,14 @@ public class SecurityConfiguration extends  WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers("/public/**");
     }
 
-    @Configuration
-    protected static class AuthenticationConfiguration extends GlobalAuthenticationConfigurerAdapter {
-        @Override
-        public void init(AuthenticationManagerBuilder auth) throws Exception {
-            // käyttäjällä jack, jonka salasana on bauer, on rooli USER
-            auth.inMemoryAuthentication()
-                    .withUser("jack").password("bauer").roles("USER");
-        }
-    }
+    // @Configuration
+    // protected static class AuthenticationConfiguration extends GlobalAuthenticationConfigurerAdapter {
+    //     @Override
+    //     public void init(AuthenticationManagerBuilder auth) throws Exception {
+    //         // käyttäjällä jack, jonka salasana on bauer, on rooli USER
+    //         auth.inMemoryAuthentication()
+    //                 .withUser("jack").password("bauer").roles("USER");
+    //     }
+    // }
 
 }

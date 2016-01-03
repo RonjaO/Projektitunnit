@@ -19,7 +19,7 @@ public class SecurityConfiguration extends  WebSecurityConfigurerAdapter {
     JdbcTemplate jdbc;
 
     @Override
-    public void configAuthentication( AuthenticationManagerBuilder auth) throws Exception {
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
             .dataSource(jdbc.getDataSource())
             .usersByUsernameQuery("SELECT email, password, true FROM Kayttaja WHERE email=?");

@@ -1,13 +1,14 @@
 CREATE TABLE Kayttaja (
     id SERIAL PRIMARY KEY,
     nimi varchar(50) NOT NULL,
-    email varchar(50) NOT NULL,
+    email varchar(50) UNIQUE NOT NULL,
     password varchar(50) NOT NULL
 );
 
 CREATE TABLE Ryhma (
     id SERIAL PRIMARY KEY,
     nimi varchar(50) NOT NULL,
+    johtaja integer REFERENCES Kayttaja(id) NOT NULL,
     kuvaus varchar(200)
 );
 

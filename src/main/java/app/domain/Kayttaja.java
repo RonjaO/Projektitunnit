@@ -7,7 +7,8 @@ import org.hibernate.validator.constraints.Email;
 public class Kayttaja {
     
     private int id;
-    
+
+        // Sähköposti toimii käyttäjtunnuksena
     @NotBlank
     @Email
     private String email;
@@ -32,8 +33,8 @@ public class Kayttaja {
         return this.email;
     }
     
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String username) {
+        this.email = username;
     }
     
     public String getNimi() {

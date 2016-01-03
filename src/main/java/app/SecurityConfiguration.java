@@ -1,23 +1,29 @@
 package app;
 
+import javax.sql.DataSource;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configurers.GlobalAuthenticationConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.core.Ordered;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebMvcSecurity
 public class SecurityConfiguration extends  WebSecurityConfigurerAdapter {
+
+    @Autowired
+    JdbcTemplate jdbc;
+
+    @Autowired
+    public void configAuthentication( AuthenticationManagerBuilder auth) throws Exception {
+        auth.jdbcAuthentication()
+            .dataSource(jdbc.getDataSource())
+            .usersByUsernameQuery("SELECT email, password, true FROM Kayttaja WHERE email=?");
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -31,6 +37,7 @@ public class SecurityConfiguration extends  WebSecurityConfigurerAdapter {
             // parametri "true" on tärkeä, ilman sitä näytetään css-tiedosto
             .defaultSuccessUrl("/projektit", true)
             .loginPage("/login")
+            .usernameParameter("email").passwordParameter("password")
             .permitAll();
     }
 

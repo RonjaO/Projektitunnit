@@ -2,7 +2,7 @@ CREATE TABLE Kayttaja (
     id SERIAL PRIMARY KEY,
     nimi varchar(50) NOT NULL,
     email varchar(50) UNIQUE NOT NULL,
-    password varchar(50) NOT NULL
+    password varchar(1000) NOT NULL
 );
 
 CREATE TABLE Ryhma (

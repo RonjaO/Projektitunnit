@@ -18,7 +18,7 @@ public class Kayttaja {
     private String nimi;
     
     @NotBlank
-    @Length(max = 50)
+    @Length(min=8, max = 50)
     private String password;
     
     public int getid() {

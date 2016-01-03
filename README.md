@@ -15,3 +15,8 @@ Muut sivut:
 - https://fierce-depths-9722.herokuapp.com/projektit/kaikki
 
 Dokumentaatio: https://github.com/RonjaO/Projektitunnit/blob/master/doc/dokumentaatio.md
+
+Testikäyttäjä
+
+Käyttäjätunnus: matti@example.com
+Salasana: matti123

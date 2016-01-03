@@ -136,3 +136,8 @@ kuvaus       | merkkijono (max 200) | Valinnainen kuvaus ryhmlle
 [Ryhma]*-*[Kayttaja]
 [Ryhma]-*[Projekti]
 ```
+
+
+#5. Käynnistys/käyttöohje
+
+Projektituntiseuranta-sovellus löytyy osoitteesta https://fierce-depths-9722.herokuapp.com. Testikäyttäjän käyttäjätunnus on "matti@example.com" ja salasana "matti123". Kaikki sovelluksen toiminnot vaativat sisäänkirjautumisen.

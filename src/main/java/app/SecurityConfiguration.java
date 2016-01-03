@@ -18,7 +18,7 @@ public class SecurityConfiguration extends  WebSecurityConfigurerAdapter {
     @Autowired
     JdbcTemplate jdbc;
 
-    @Autowired
+    @Override
     public void configAuthentication( AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
             .dataSource(jdbc.getDataSource())

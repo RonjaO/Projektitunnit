@@ -23,7 +23,7 @@ public class SecurityConfiguration extends  WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication()
             .dataSource(jdbc.getDataSource())
             .usersByUsernameQuery("SELECT email, password, true FROM Kayttaja WHERE email=?")
-            .authoritiesByUsernameQuery("SELECT email FROM kayttaja WHERE email=?");
+            .authoritiesByUsernameQuery("SELECT email,'' FROM kayttaja WHERE email=?");
     }
 
     @Override

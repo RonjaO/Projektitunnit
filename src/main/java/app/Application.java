@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import javax.annotation.PostConstruct;
 import org.springframework.context.annotation.Import;
-import org.springframework.security.crypto.password.StandardPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
 @SpringBootApplication
@@ -19,7 +19,7 @@ public class Application {
     
 
     public static void main(String[] args) {
-        StandardPasswordEncoder encoder = new StandardPasswordEncoder();
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         
         System.out.println("Salasana: " + encoder.encode("matti123"));
 

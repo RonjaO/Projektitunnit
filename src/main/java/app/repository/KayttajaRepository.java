@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
-
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -32,7 +32,9 @@ public class KayttajaRepository {
     public void save(Kayttaja kayttaja) {
         String sql = "INSERT INTO Kayttaja(email, nimi, password) VALUES (?, ?, ?)";
         
-        jdbc.update(sql, kayttaja.getEmail(), kayttaja.getNimi(), kayttaja.getPassword());
+        String kryptattuPassu = new BCryptPasswordEncoder().encode(kayttaja.getPassword());
+        
+        jdbc.update(sql, kayttaja.getEmail(), kayttaja.getNimi(), kryptattuPassu);
     }
     
     public void delete(int id) {
@@ -44,7 +46,9 @@ public class KayttajaRepository {
     public void update(Kayttaja kayttaja) {
         String sql = "UPDATE Kayttaja SET email=?, nimi=?, password=? WHERE id=?";
         
-        jdbc.update(sql, kayttaja.getEmail(), kayttaja.getNimi(), kayttaja.getPassword());
+        String kryptattuPassu = new BCryptPasswordEncoder().encode(kayttaja.getPassword());
+        
+        jdbc.update(sql, kayttaja.getEmail(), kayttaja.getNimi(), kryptattuPassu);
     }
     
     

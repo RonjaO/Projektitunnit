@@ -10,6 +10,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebMvcSecurity
@@ -23,7 +25,8 @@ public class SecurityConfiguration extends  WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication()
             .dataSource(jdbc.getDataSource())
             .usersByUsernameQuery("SELECT email, password, true FROM Kayttaja WHERE email=?")
-            .authoritiesByUsernameQuery("SELECT email,'FOO' FROM kayttaja WHERE email=?");
+            .authoritiesByUsernameQuery("SELECT email,'FOO' FROM kayttaja WHERE email=?")
+            .passwordEncoder(new BCryptPasswordEncoder());
     }
 
     @Override
@@ -57,5 +60,6 @@ public class SecurityConfiguration extends  WebSecurityConfigurerAdapter {
     //                 .withUser("jack").password("bauer").roles("USER");
     //     }
     // }
+    
 
 }

@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import app.domain.Kayttaja; 
 
+
 @Controller
 @RequestMapping("/projektit")
 public class ProjektiController {
@@ -34,10 +35,10 @@ public class ProjektiController {
     public String view(Model model) {
         model.addAttribute("projektit", projektit.findAll());
         
-        Kayttaja kayttaja = (Kayttaja) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String nimi = kayttaja.getNimi();
-        
-        model.addAttribute("kayttaja", nimi);
+        // Kayttaja kayttaja = (Kayttaja) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        // String nimi = kayttaja.getNimi();
+        //
+        // model.addAttribute("kayttaja", nimi);
         
         return "projektit";
     }

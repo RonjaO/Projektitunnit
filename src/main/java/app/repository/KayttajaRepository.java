@@ -29,6 +29,9 @@ public class KayttajaRepository {
         return jdbc.query("SELECT * FROM Kayttaja", kayttajaMapper);
     }
     
+    public Kayttaja findOne(String email) {
+        return jdbc.queryForObject("SELECT * FROM Kayttaja WHERE email = ?", kayttajaMapper, email);
+    }
     public void save(Kayttaja kayttaja) {
         String sql = "INSERT INTO Kayttaja(email, nimi, password) VALUES (?, ?, ?)";
         

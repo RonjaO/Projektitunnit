@@ -33,10 +33,10 @@ public class ProjektiController {
     
     @RequestMapping(method=RequestMethod.GET)
     public String view(Model model) {
-        model.addAttribute("projektit", projektit.findAll());
-        
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String nimi = auth.getName();
+        model.addAttribute("projektit", projektit.findAllByUser(nimi));
+        
 
         model.addAttribute("kayttaja", nimi);
         
@@ -49,7 +49,9 @@ public class ProjektiController {
             return "uusi_projekti";
         }
 
-        projektit.save(projekti);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String nimi = auth.getName();
+        projektit.save(projekti, nimi);
         
         return "redirect:/projektit";
     }

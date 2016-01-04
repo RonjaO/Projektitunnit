@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
+import app.domain.Kayttaja;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,6 +20,9 @@ public class ProjektiRepository {
     
     @Autowired
     private JdbcTemplate jdbc;
+    
+    @Autowired
+    private KayttajaRepository kayttajaRepository;
     private Logger log = LoggerFactory.getLogger(getClass());
     
     public Projekti findOne(int id) {
@@ -29,10 +33,15 @@ public class ProjektiRepository {
         return jdbc.query("SELECT * FROM projekti ORDER BY nimi", projektiMapper);
     }
     
-    public void save(Projekti projekti) {
-        String sql = "INSERT INTO projekti(nimi, kuvaus) VALUES (?, ?)";
+    public List<Projekti> findAllByUser(String kayttaja) {
+        return jdbc.query("SELECT * FROM projekti, Kayttaja WHERE Kayttaja.email=? AND Projekti.omistaja_kayttaja=Kayttaja.id ORDER BY nimi", projektiMapper);
+    }
+    
+    public void save(Projekti projekti, String kayttaja) {
+        Kayttaja kayttaja = kayttajaRepository.findOne(kayttaja);
+        String sql = "INSERT INTO projekti(nimi, kuvaus, omistaja_kayttaja) VALUES (?, ?, ?)";
         
-        jdbc.update(sql, projekti.getNimi(), projekti.getKuvaus());
+        jdbc.update(sql, projekti.getNimi(), projekti.getKuvaus(), kayttaja.getId());
     }
     
     public void delete(int id) {

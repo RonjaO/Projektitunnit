@@ -38,10 +38,9 @@ public class ProjektiRepository {
     }
     
     public void save(Projekti projekti, String kayttaja) {
-        Kayttaja kayttaja = kayttajaRepository.findOne(kayttaja);
-        String sql = "INSERT INTO projekti(nimi, kuvaus, omistaja_kayttaja) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO projekti(nimi, kuvaus, omistaja_kayttaja) VALUES (?, ?, (SELECT id FROM Kayttaja WHERE email=?))";
         
-        jdbc.update(sql, projekti.getNimi(), projekti.getKuvaus(), kayttaja.getId());
+        jdbc.update(sql, projekti.getNimi(), projekti.getKuvaus(), kayttaja);
     }
     
     public void delete(int id) {

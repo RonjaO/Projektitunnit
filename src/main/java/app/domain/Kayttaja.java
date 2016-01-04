@@ -21,7 +21,7 @@ public class Kayttaja {
     @Length(min=8, max = 50)
     private String password;
     
-    public int getid() {
+    public int getId() {
         return this.id;
     }
     

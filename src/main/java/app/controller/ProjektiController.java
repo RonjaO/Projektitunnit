@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.lang.*;
 import javax.validation.Valid;
 
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.Authentication;import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -35,10 +35,10 @@ public class ProjektiController {
     public String view(Model model) {
         model.addAttribute("projektit", projektit.findAll());
         
-        // Kayttaja kayttaja = (Kayttaja) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        // String nimi = kayttaja.getNimi();
-        //
-        // model.addAttribute("kayttaja", nimi);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String nimi = auth.getName();
+
+        model.addAttribute("kayttaja", nimi);
         
         return "projektit";
     }

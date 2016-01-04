@@ -15,6 +15,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.lang.*;
 import javax.validation.Valid;
 
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import app.domain.Kayttaja; 
+
 @Controller
 @RequestMapping("/projektit")
 public class ProjektiController {
@@ -25,6 +33,11 @@ public class ProjektiController {
     @RequestMapping(method=RequestMethod.GET)
     public String view(Model model) {
         model.addAttribute("projektit", projektit.findAll());
+        
+        Kayttaja kayttaja = (Kayttaja) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String nimi = kayttaja.getNimi();
+        
+        model.addAttribute("kayttaja", nimi);
         
         return "projektit";
     }

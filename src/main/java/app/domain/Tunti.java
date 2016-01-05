@@ -1,13 +1,14 @@
 package app.domain;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Tunti {
     
     private int id;
     private String kuvaus;
-    private Date alkuaika;
-    private Date loppuaika;
+
+    private LocalDateTime alkuaika;
+    private LocalDateTime loppuaika;
     private int kayttajaId;
     private int projektiId;
     
@@ -27,19 +28,19 @@ public class Tunti {
         this.kuvaus = kuvaus;
     }
     
-    public Date getalkuaika() {
+    public LocalDateTime getalkuaika() {
         return this.alkuaika;
     }
     
-    public void setAlkuaika(Date alkuaika) {
+    public void setAlkuaika(LocalDateTime alkuaika) {
         this.alkuaika = alkuaika;
     }
     
-    public Date getLoppuaika() {
+    public LocalDateTime getLoppuaika() {
         return this.loppuaika;
     }
     
-    public void setLoppuaika(Date loppuaika) {
+    public void setLoppuaika(LocalDateTime loppuaika) {
         this.loppuaika = loppuaika;
     }
     

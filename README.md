@@ -16,7 +16,10 @@ Muut sivut:
 
 Dokumentaatio: https://github.com/RonjaO/Projektitunnit/blob/master/doc/dokumentaatio.md
 
-Testikäyttäjä
+Testikäyttäjät
 
 Käyttäjätunnus: matti@example.com
 Salasana: matti123
+
+Käyttäjätunnus: testaaja@testi.com
+Salasana: salasana

@@ -25,7 +25,7 @@
                             </td> </tr>
                         <tr> <td>Nimi: * </td> <td><input type="text" th:field="*{nimi}" class="project-name" /> 
                                 <p th:if="${#fields.hasErrors('nimi')}" th:errors="*{nimi}"> virheviesti </p></td> </tr>
-                        <tr> <td>Salasana: *</td> <td><input type="password" th:field="${password}" /> <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"> virheviesti</p></td> </tr>
+                        <tr> <td>Salasana: *</td> <td><input type="password" th:field="*{password}" /> <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"> virheviesti</p></td> </tr>
                         <tr> <td> </td> <td><input type="submit" value="Rekisteröidy" /></td> </tr>
                     </table>
                 </form>

@@ -8,7 +8,7 @@ public class Kayttaja {
     
     private int id;
 
-        // Sähköposti toimii käyttäjtunnuksena
+        // Sähköposti toimii käyttäjätunnuksena
     @NotBlank
     @Email
     private String email;

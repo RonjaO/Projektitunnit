@@ -22,8 +22,8 @@
                         <tr> <td>Sähköpostiosoite: *</td> 
                             <td> <input class="project-name" type="text" th:field="*{email}" /> <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Virheviesti </p></td> </tr>
                         <tr> <td>Nimi: * </td> <td><input type="text" th:field="*{nimi}" class="project-name" /> <p th:if="${#fields.hasErrors('nimi')}" th:errors="*{nimi}"> virheviesti </p></td> </tr>
-                        <tr> <td>Salasana: * </td> <td><input type="password" class="project-name" th:field="${password}" /> <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"> virheviesti</p> </td> </tr>
-                        <input type="submit" value="Luo ryhmä" />
+                        <tr> <td>Salasana: * </td> <td><input type="text" class="project-name" th:field="${password}" /> <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"> virheviesti</p> </td> </tr>
+                        <input type="submit" value="Rekisteröidy" />
                     </table>
                 </form>
 

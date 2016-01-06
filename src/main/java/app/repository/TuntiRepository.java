@@ -15,7 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.time.LocalDateTime;
-import java.time.fromat.DateTimeFormatter;
+import java.time.format.DateTimeFormatter;
 
 @Repository
 public class TuntiRepository {

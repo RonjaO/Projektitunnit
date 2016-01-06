@@ -23,7 +23,7 @@
                     <tbody>
                         <tr th:if="${projektit.empty}"> <td colspan="2">Ei projekteja</td> </tr>
                         <tr th:each="projekti : ${projektit}"> 
-                            <td><form th:method="POST" th:action="@/projektit/raportti/{id}(id=${projekti.id})}"> 
+                            <td><form th:method="POST" th:action="@{/projektit/raportti/{id}(id=${projekti.id})}"> 
                                 <button th:text="${projekti.nimi}" value="${projekti.id}" type="submit">nimi</button></form> </td> 
                             <td> – </td> </tr>
                     </tbody>

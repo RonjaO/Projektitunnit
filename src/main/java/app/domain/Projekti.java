@@ -8,11 +8,11 @@ public class Projekti {
     private int id;
     private int omistaja_kayttaja;
     private int omistaja_ryhma;
-    
-    @NotBlank
-    @Length(min = 1, max =50)
+        @NotBlank(message="Projektin nimi ei saa olla tyhjä")
+    @Length(min = 1, max =50, message="Nimen pituus saa olla korkeitaan 50 merkkiä")
     private String nimi;
-    @Length(min = 5, max = 200)
+
+    @Length(min = 5, max = 200, message="Kuvaus voi olla korkeintaan 200 merkkiä pitkä")
     private String kuvaus;
     
     public Projekti() {

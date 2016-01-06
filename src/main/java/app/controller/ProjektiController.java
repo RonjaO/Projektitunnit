@@ -15,7 +15,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.lang.*;
 import javax.validation.Valid;
 
-import org.springframework.security.core.Authentication;import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -63,7 +64,9 @@ public class ProjektiController {
     
     @RequestMapping(method=RequestMethod.GET, value="/kaikki")
     public String muokkaaProjekteja(Model model) {
-        model.addAttribute("projektit", projektit.findAll());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String nimi = auth.getName();
+        model.addAttribute("projektit", projektit.findAllByUser(nimi));
         
         return "kaikki_projektit";
     }
@@ -94,7 +97,9 @@ public class ProjektiController {
     
     @RequestMapping(value="/raportti", method=RequestMethod.GET)
     public String raportti(Model model) {
-        model.addAttribute("projektit", projektit.findAll());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String nimi = auth.getName();
+        model.addAttribute("projektit", projektit.findAllByUser(nimi));
         
         return "raportti";
     }

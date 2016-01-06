@@ -22,19 +22,22 @@
                     </thead>
                     <tbody>
                         <tr th:if="${projektit.empty}"> <td colspan="2">Ei projekteja</td> </tr>
-                        <tr th:each="projekti : ${projektit}"> <td><a href="#" th:text="${projekti.nimi}">nimi</a> </td> 
+                        <tr th:each="projekti : ${projektit}"> 
+                            <td><form th:method="POST" th:action="@/projektit/raportti/{id}(id=${projekti.id})}"> 
+                                <button th:text="${projekti.nimi}" value="${projekti.id}" type="submit">nimi</button></form> </td> 
                             <td> – </td> </tr>
                     </tbody>
                 </table>
 
-                <div class="projekti">
-                    <h3>Projektin tiedot: [projektin nimi]</h3>
+                <div class="projekti" th:if="${projekti}">
+                    <h3>Projektin tiedot: <span th:text="${projekti.nimi}">projektin nimi</span></h3>
                     <table class="taulukko">
                         <thead>
                             <tr> <td>Päiväys</td> <td>yhteensä</td> <td>Kommentit</td> </tr>
                         </thead>
                         <tbody>
-                            <tr> <td colspan="3">Ei valittua projektia</td> </tr>
+                            <tr> <td colspan="3" th:if="${tunnit.empty}">Ei vielä tunteja</td> </tr>
+                            <tr th:each="tunti : ${tunnit}"> <td th:text="${tunti.alkuaika}">aika</td> <td> – </td> <td th:text)"${tunti.kuvaus}">kuvaus</td> </tr>
                         </tbody>
                     </table>
                 </div>

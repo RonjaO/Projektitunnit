@@ -61,7 +61,7 @@ public class TuntiRepository {
             tunti.setKayttajaId(rs.getInt("kayttaja"));
             tunti.setProjektiId(rs.getInt("projekti_id"));
             tunti.setKuvaus(rs.getString("kuvaus"));
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             tunti.setAlkuaika(LocalDateTime.parse(rs.getString("alkuaika"), formatter));
             tunti.setLoppuaika(LocalDateTime.parse(rs.getString("loppuaika"), formatter));
             

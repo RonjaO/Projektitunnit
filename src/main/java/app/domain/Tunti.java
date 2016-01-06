@@ -61,12 +61,14 @@ public class Tunti {
     }
     
     public String getPaivays() {
-        return this.alkuaika.getDayOfMonth() + "." + this.alkuaika.getMonth() + "." + this.alkuaika.getYear();
+        return this.alkuaika.getDayOfMonth() + "." + this.alkuaika.getMonthValue() + "." + this.alkuaika.getYear();
     }
     
     public String getKesto() {
-        LocalDateTime kesto = this.loppuaika.minusHours(this.alkuaika.getHour());
-        kesto = this.loppuaika.minusMinutes(this.alkuaika.getMinute());
-        return kesto.getMinute() + ":" + kesto.getHour();
+
+        LocalDateTime kesto = this.loppuaika;
+            kesto.minusHours(this.alkuaika.getHour());
+        kesto.minusMinutes(this.alkuaika.getMinute());
+        return kesto.getMinute() + "." + kesto.getHour();
     }
 }

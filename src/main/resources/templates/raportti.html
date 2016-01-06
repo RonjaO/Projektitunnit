@@ -36,8 +36,8 @@
                             <tr> <td>Päiväys</td> <td>yhteensä</td> <td>Kommentit</td> </tr>
                         </thead>
                         <tbody>
-                            <tr> <td colspan="3" th:if="${tunnit.empty}">Ei vielä tunteja</td> </tr>
-                            <tr th:each="tunti : ${tunnit}"> <td >aika</td> <td> – </td> <td th:text)"${tunti.kuvaus}">kuvaus</td> </tr>
+                            <tr th:if="${tunnit.empty}"> <td colspan="3" >Ei vielä tunteja</td> </tr>
+                            <tr th:each="tunti : ${tunnit}"> <td th:text="${tunti.alkuaika}">aika</td> <td> – </td> <td th:text="${tunti.kuvaus}">kuvaus</td> </tr>
                         </tbody>
                     </table>
                 </div>

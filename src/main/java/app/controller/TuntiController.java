@@ -27,7 +27,7 @@ public class TuntiController {
     @Autowired
     private ProjektiRepository projektit;
     
-    @RequestMapping(value="/projektit/raportti/[id]", method=RequestMethod.POST)
+    @RequestMapping(value="/projektit/raportti/{id}", method=RequestMethod.POST)
     public String projektitunnit(@PathVariable int projektiId, RedirectAttributes redirectAttributes) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String nimi = auth.getName();

@@ -59,4 +59,14 @@ public class Tunti {
     public void setProjektiId(int id) {
         this.id = id;
     }
+    
+    public String getPaivays() {
+        return this.alkuaika.getDayOfMonth() + "." + this.alkuaika.getMonth() + "." + this.alkuaika.getYear();
+    }
+    
+    public String getKesto() {
+        LocalDateTime kesto = this.loppuaika.minusHours(this.alkuaika.getHour());
+        kesto = this.loppuaika.minusMinutes(this.alkuaika.getMinute());
+        return kesto.getMinute() + ":" + kesto.getHour();
+    }
 }

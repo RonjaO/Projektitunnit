@@ -60,33 +60,8 @@ public class TuntiRepository {
             tunti.setKayttajaId(rs.getInt("kayttaja"));
             tunti.setProjektiId(rs.getInt("projekti_id"));
             tunti.setKuvaus(rs.getString("kuvaus"));
-            
-            String[] alkuaika = rs.getString("alkuaika").split(" ");
-            String[] paivays = alkuaika[0].split("-");
-            int vuosi = Integer.parseInt(paivays[0]);
-            int kuukausi = Integer.parseInt(paivays[1]);
-            int paiva = Integer.parseInt(paivays[2]);
-
-            String[] klo = alkuaika[1].split(":");
-            int tunnit = Integer.parseInt(klo[0]);
-            int minuutit = Integer.parseInt(klo[1]);
-
-            tunti.setAlkuaika(LocalDateTime.of(vuosi, kuukausi, paiva, tunnit, minuutit));
-            
-            if (rs.getString("loppuaika") != "") {
-                String[] loppuaika = rs.getString("loppuaika").split(" ");
-                String[] loppupaivays = loppuaika[0].split("-");
-                vuosi = Integer.parseInt(loppupaivays[0]);
-                kuukausi = Integer.parseInt(loppupaivays[1]);
-                paiva = Integer.parseInt(loppupaivays[2]);
-
-                String[] loppuklo = loppuaika[1].split(":");
-                tunnit = Integer.parseInt(loppuklo[0]);
-                minuutit = Integer.parseInt(loppuklo[1]);
-                
-                tunti.setLoppuaika(LocalDateTime.of(vuosi, kuukausi, paiva, tunnit, minuutit));
-            }
-            
+            tunti.setAlkuaika(LocalDateTime.parse(rs.getString("alkuaika")));
+            tunti.setLoppuaika(LocalDateTime.parse(rs.getString("loppuaika")));
             
             return tunti;
         }

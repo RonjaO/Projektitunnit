@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.time.LocalDateTime;
+import java.time.fromat.DateTimeFormatter;
 
 @Repository
 public class TuntiRepository {
@@ -60,8 +61,9 @@ public class TuntiRepository {
             tunti.setKayttajaId(rs.getInt("kayttaja"));
             tunti.setProjektiId(rs.getInt("projekti_id"));
             tunti.setKuvaus(rs.getString("kuvaus"));
-            tunti.setAlkuaika(LocalDateTime.parse(rs.getString("alkuaika")));
-            tunti.setLoppuaika(LocalDateTime.parse(rs.getString("loppuaika")));
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-ddTHH:mm");
+            tunti.setAlkuaika(LocalDateTime.parse(rs.getString("alkuaika"), formatter));
+            tunti.setLoppuaika(LocalDateTime.parse(rs.getString("loppuaika"), formatter));
             
             return tunti;
         }

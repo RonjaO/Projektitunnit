@@ -2,6 +2,7 @@ package app.controller;
 
 import app.repository.ProjektiRepository;
 import app.domain.Projekti;
+import app.domain.Tunti;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,7 +34,7 @@ public class ProjektiController {
     private ProjektiRepository projektit;
     
     @RequestMapping(method=RequestMethod.GET)
-    public String view(Model model) {
+    public String view(Model model, @ModelAttribute Tunti tunti) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String nimi = auth.getName();
         model.addAttribute("projektit", projektit.findAllByUser(nimi));

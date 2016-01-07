@@ -52,7 +52,7 @@
 
                 <div th:if="${tunti}">
                     <h2><span th:text="${projekti.nimi}">Projektin nimi</span>: Työskennellään...</h2>
-                    <p th:text="${porjekti.kuvaus}">Projektin kuvaus</p>
+                    <p th:text="${projekti.kuvaus}">Projektin kuvaus</p>
                     <form th:method="POST" th:action="@{/projektit/tunti/{id}(id=${tunti.id})}" action="#">
                        <input type="submit" value="Lopeta" />
                     </form>

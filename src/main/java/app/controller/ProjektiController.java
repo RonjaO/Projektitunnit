@@ -34,7 +34,7 @@ public class ProjektiController {
     private ProjektiRepository projektit;
     
     @RequestMapping(method=RequestMethod.GET)
-    public String view(Model model, @ModelAttribute Tunti tunti) {
+    public String view(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String nimi = auth.getName();
         model.addAttribute("projektit", projektit.findAllByUser(nimi));

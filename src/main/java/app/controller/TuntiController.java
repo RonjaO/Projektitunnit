@@ -36,8 +36,8 @@ public class TuntiController {
     }
     
     @RequestMapping(value="/projektit/tunti", method=RequestMethod.POST)
-    public String aloitaTunti(@ModelAttribute Tunti tunti, RedirectAttributes redirectAttributes) {
-        tunnit.save(tunti, kirjautunut());
+    public String aloitaTunti(@ModelAttribute int projektiId RedirectAttributes redirectAttributes) {
+        tunnit.save(projektiId, kirjautunut());
         
         redirectAttributes.addFlashAttribute("tunti", "joopajoo");
         

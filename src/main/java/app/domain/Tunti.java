@@ -1,6 +1,7 @@
 package app.domain;
 
 import java.time.LocalDateTime;
+import java.time.Duration;
 
 public class Tunti {
     
@@ -65,10 +66,7 @@ public class Tunti {
     }
     
     public String getKesto() {
-
-        LocalDateTime kesto = this.loppuaika;
-            kesto.minusHours(this.alkuaika.getHour());
-        kesto.minusMinutes(this.alkuaika.getMinute());
-        return kesto.getMinute() + "." + kesto.getHour();
+        Duration kesto = Duration.between(this.alkuaika, this.loppuaika);
+        return kesto.toHours() + "." + kesto.toMinutes();
     }
 }

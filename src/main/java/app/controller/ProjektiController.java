@@ -39,14 +39,14 @@ public class ProjektiController {
     
     @RequestMapping(method=RequestMethod.GET)
     public String view(Model model) {
-        if (tunnit.kesken().size() != 0) {
-            model.addAttribute("tunti", tunnit.kesken().get(0));
-            
-            int projekti = tunnit.kesken().get(0).getProjektiId();
-            model.addAttribute("projekti", projektit.findOne(projekti));
-            
-            return "projektit";
-        }
+        // if (tunnit.kesken().size() != 0) {
+        //     model.addAttribute("tunti", tunnit.kesken().get(0));
+        //
+        //     int projekti = tunnit.kesken().get(0).getProjektiId();
+        //     model.addAttribute("projekti", projektit.findOne(projekti));
+        //
+        //     return "projektit";
+        // }
 
         model.addAttribute("projektit", projektit.findAllByUser(kirjautunut()));
         

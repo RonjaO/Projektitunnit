@@ -14,43 +14,45 @@
             <div class="sisalto">
 
                 <div th:if="${projektit}">
-                <h2>Jatka työskentelyä</h2>
+                    <h2>Jatka työskentelyä</h2>
 
-                <p>Valitse projekti, jonka parissa jatkat. Paina sitten "aloita".</p>
+                    <p>Valitse projekti, jonka parissa jatkat. Paina sitten "aloita".</p>
 
-                <form th:method="POST" th:action="@{/projektit/tunti}" action="#">
-                    <h3>Omat projektisi</h3>
-                    <table class="taulukko">
-                        <thead>
-                            <tr> <th>Projekti</th> <th>Tunteja yht.</th> </tr>
-                        </thead>
-                        <tbody>
-                            <tr th:if="${projektit.empty}"> <td colspan="2">Ei projekteja. Aloita <a th:href="@{/projektit/uusi_projekti}">luomalla projekti</a>!</td> </tr>
-                            <tr th:each="projekti : ${projektit}"> 
-                                <td> <input type="radio" name="projektiId" th:value="${projekti.id}" th:text="${projekti.nimi}" /> </td> 
-                            <td th:text="${projekti.tunnit}"> – </td> </tr>
-                        </tbody>
-                    </table>
+                    <form th:method="POST" th:action="@{/projektit/tunti}" action="#">
+                        <h3>Omat projektisi</h3>
+                        <table class="taulukko">
+                            <thead>
+                                <tr> <th>Projekti</th> <th>Tunteja yht.</th> </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:if="${projektit.empty}"> <td colspan="2">Ei projekteja. Aloita <a th:href="@{/projektit/uusi_projekti}">luomalla projekti</a>!</td> </tr>
+                                <tr th:each="projekti : ${projektit}"> 
+                                    <td> <input type="radio" name="projektiId" th:value="${projekti.id}" th:text="${projekti.nimi}" /> </td> 
+                                    <td th:text="${projekti.tunnit}"> – </td> 
+                                </tr>
+                            </tbody>
+                        </table>
 
-                    <h3>Ryhmäprojektit</h3>
-                    <table class="taulukko">
-                        <thead>
-                            <tr> <th>Projekti</th> <th>Ryhmä</th> <th>Tuntisi yht.</th> </tr>
-                        </thead>
-                        <tbody>
-                            <tr> <td colspan="3">Ei projekteja</td> </tr>
-                        </tbody>
-                    </table>
-                    <input type="submit" value="aloita" />
-                </form>
+                        <h3>Ryhmäprojektit</h3>
+                        <table class="taulukko">
+                            <thead>
+                                <tr> <th>Projekti</th> <th>Ryhmä</th> <th>Tuntisi yht.</th> </tr>
+                            </thead>
+                            <tbody>
+                                <tr> <td colspan="3">Ei projekteja</td> </tr>
+                            </tbody>
+                        </table>
+                        <input type="submit" value="aloita" />
+                    </form>
 
-                <p><a th:href="@{/projektit/kaikki}">Muokkaa projekteja</a> – 
-                    <a th:href="@{/projektit/uusi_projekti}">Luo projekti</a></p>
+                    <p><a th:href="@{/projektit/kaikki}">Muokkaa projekteja</a> – 
+                        <a th:href="@{/projektit/uusi_projekti}">Luo projekti</a></p>
 
                 </div>
 
                 <div th:if="${tunti}">
                     <h2><span th:text="${projekti.nimi}">nimi</span>: Työskennellään...</h2>
+                    <p th:text="${projekti.kuvaus}">kuvaus</p>
                     <form th:method="POST" th:action="@{/projektit/tunti/{id}(id=${tunti.id})}" action="#">
                        <input type="submit" value="Lopeta" />
                     </form>

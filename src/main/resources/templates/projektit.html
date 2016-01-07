@@ -26,7 +26,7 @@
                         <tbody>
                             <tr th:if="${projektit.empty}"> <td colspan="2">Ei projekteja. Aloita <a th:href="@{/projektit/uusi_projekti}">luomalla projekti</a>!</td> </tr>
                             <tr th:each="projekti : ${projektit}"> <td th:text="${projekti.nimi}">nimi</td> 
-                            <td th:text="${projekti.tunnit != null} ? projekti.tunnit : '–'"> – </td> </tr>
+                            <td th:text="${projekti.tunnit}"> – </td> </tr>
                         </tbody>
                     </table>
 

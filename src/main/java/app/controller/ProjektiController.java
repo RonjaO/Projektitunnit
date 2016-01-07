@@ -40,7 +40,8 @@ public class ProjektiController {
     @RequestMapping(method=RequestMethod.GET)
     public String view(Model model) {
         if (!(tunnit.kesken().isEmpty())) {
-            model.addAttribute("tunti", tunnit.kesken().get(0));
+            List<Tunti> tunti = tunnit.kesken();
+            model.addAttribute("tunti", tunti.get(0));
 
             int projekti = tunnit.kesken().get(0).getProjektiId();
             // model.addAttribute("projekti", projektit.findOne(projekti));

@@ -44,7 +44,7 @@ public class TuntiController {
         return "redirect:/projektit";
     }
     
-    @RequestMapping(value="/projektit/tunti/[id]", method=RequestMethod.POST)
+    @RequestMapping(value="/projektit/tunti/{id}", method=RequestMethod.POST)
     public String lopeta(@ModelAttribute Tunti tunti)  {
         tunnit.loppu(tunti);
         

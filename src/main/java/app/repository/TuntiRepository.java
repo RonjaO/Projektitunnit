@@ -49,7 +49,7 @@ public class TuntiRepository {
         LocalDateTime ldt = LocalDateTime.now();
         String loppuaika = ldt.toString();
         
-        String sql = "UPDATE Tunti SET loppuaika=?, kuvaus=? WHERE id=?";
+        String sql = "UPDATE Tunti SET loppuaika=cast (? as timestamp), kuvaus=? WHERE id=?";
         
         jdbc.update(sql, loppuaika, tunti.getKuvaus(), tunti.getId());
     }

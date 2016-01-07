@@ -42,7 +42,7 @@ public class ProjektiController {
     public String view(Model model) {
         if (!(tunnit.kesken().isEmpty())) {
             List<Tunti> tunti = tunnit.kesken();
-            System.out.println("tunti: " + tunti.get(0).getId());
+            System.out.println("tunti: " + tunti.get(tunti.size() - 1).getId());
             model.addAttribute("tunti", tunti.get(0));
 
             int projekti = tunnit.kesken().get(0).getProjektiId();

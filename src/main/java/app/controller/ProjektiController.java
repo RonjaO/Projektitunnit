@@ -39,7 +39,7 @@ public class ProjektiController {
     
     @RequestMapping(method=RequestMethod.GET)
     public String view(Model model) {
-        if (!(tunnit.kesken().size().isEmpty())) {
+        if (!(tunnit.kesken().isEmpty())) {
             model.addAttribute("tunti", tunnit.kesken().get(0));
 
             int projekti = tunnit.kesken().get(0).getProjektiId();

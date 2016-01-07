@@ -29,13 +29,24 @@ public class TuntiController {
     
     @RequestMapping(value="/projektit/raportti/{projektiId}", method=RequestMethod.POST)
     public String projektitunnit(@PathVariable int projektiId, RedirectAttributes redirectAttributes) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String nimi = auth.getName();
-        redirectAttributes.addFlashAttribute("tunnit", tunnit.findAllByKayttajaAndProjekti(nimi, projektiId));
+        redirectAttributes.addFlashAttribute("tunnit", tunnit.findAllByKayttajaAndProjekti(kirjautunut(), projektiId));
         redirectAttributes.addFlashAttribute("projekti", projektit.findOne(projektiId));
         
         return "redirect:/projektit/raportti";
     }
     
+    @RequestMapping(value="/projektit/tunti", method=RequestMethod.POST)
+    public String aloitaTunti(@ModelAttribute Tunti tunti, RedirectAttributes redirectAttributes) {
+        tunnit.save(tunti);
+        
+        redirectAttributes.addFlashAttribute("tunti", "joopajoo");
+        
+        return "redirect:/projektit";
+    }
     
+    private String kirjautunut() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return auth.getName();
+    }
+
 }

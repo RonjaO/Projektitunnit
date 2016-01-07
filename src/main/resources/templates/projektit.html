@@ -17,7 +17,7 @@
 
                 <p>Valitse projekti, jonka parissa jatkat. Paina sitten "aloita".</p>
 
-                <form>
+                <form th:method="POST" th:action="@{/projektit/tunti}" action="#" th:object="{tunti}">
                     <h3>Omat projektisi</h3>
                     <table class="taulukko">
                         <thead>
@@ -25,7 +25,8 @@
                         </thead>
                         <tbody>
                             <tr th:if="${projektit.empty}"> <td colspan="2">Ei projekteja. Aloita <a th:href="@{/projektit/uusi_projekti}">luomalla projekti</a>!</td> </tr>
-                            <tr th:each="projekti : ${projektit}"> <td th:text="${projekti.nimi}">nimi</td> 
+                            <tr th:each="projekti : ${projektit}"> 
+                                <td> <input type="radio" name="projektiId" th:value="${projekti.id}" th:text="${projekti.nimi}" /> </td> 
                             <td th:text="${projekti.tunnit}"> – </td> </tr>
                         </tbody>
                     </table>
@@ -44,6 +45,11 @@
 
                <p><a th:href="@{/projektit/kaikki}">Muokkaa projekteja</a> – 
                     <a th:href="@{/projektit/uusi_projekti}">Luo projekti</a></p>
+
+
+                <div th:if="${tunti}">
+                    <h4>Työskennellään...</h4>
+                </div>
 
             </div>
         </div>

@@ -31,6 +31,7 @@
 
                 <div class="projekti" th:if="${projekti}">
                     <h3>Projektin tiedot: <span th:text="${projekti.nimi}">projektin nimi</span></h3>
+                    <p th:text="${projekti.kuvaus}">kuvaus</p>
                     <table class="taulukko">
                         <thead>
                             <tr> <td>Päiväys</td> <td>yhteensä</td> <td>Kommentit</td> </tr>

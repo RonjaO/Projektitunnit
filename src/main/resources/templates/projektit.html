@@ -13,6 +13,7 @@
 
             <div class="sisalto">
 
+                <div th:if="${projektit}">
                 <h2>Jatka työskentelyä</h2>
 
                 <p>Valitse projekti, jonka parissa jatkat. Paina sitten "aloita".</p>
@@ -43,12 +44,17 @@
                     <input type="submit" value="aloita" />
                 </form>
 
-               <p><a th:href="@{/projektit/kaikki}">Muokkaa projekteja</a> – 
+                <p><a th:href="@{/projektit/kaikki}">Muokkaa projekteja</a> – 
                     <a th:href="@{/projektit/uusi_projekti}">Luo projekti</a></p>
 
+                </div>
 
                 <div th:if="${tunti}">
-                    <h4>Työskennellään...</h4>
+                    <h2><span th:text="${projekti.nimi}">nimi</span>: Työskennellään...</h2>
+                    <form th:method="POST" th:action="@{/projektit/tunti/{id}(id=${tunti.id})}" action="#">
+                       <input type="submit" value="Lopeta" />
+                    </form>
+                    
                 </div>
 
             </div>

@@ -54,6 +54,10 @@ public class TuntiRepository {
         jdbc.update(sql, loppuaika, tunti.getKuvaus(), tunti.getId());
     }
 
+    public List<Tunti> kesken() {
+        return jdbc.query("SELECT * FROM Tunti WHERE loppuaika=IS NULL;", tuntiMapper);
+    }
+
     private static final RowMapper<Tunti> tuntiMapper = new RowMapper<Tunti>() {
         public Tunti mapRow(ResultSet rs, int rowNum) throws SQLException {
             Tunti tunti = new Tunti();

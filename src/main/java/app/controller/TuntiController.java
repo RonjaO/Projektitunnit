@@ -44,6 +44,13 @@ public class TuntiController {
         return "redirect:/projektit";
     }
     
+    @RequestMapping(value="/projektit/tunti/[id]", method=RequestMethod.POST)
+    public String lopeta(@ModelAttribute Tunti tunti)  {
+        tunnit.loppu(tunti);
+        
+        return "redirect:/projektit";
+    }
+    
     private String kirjautunut() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         return auth.getName();

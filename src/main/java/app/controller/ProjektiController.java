@@ -1,6 +1,7 @@
 package app.controller;
 
 import app.repository.ProjektiRepository;
+import app.repository.TuntiRepository;
 import app.domain.Projekti;
 import app.domain.Tunti;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,14 +34,24 @@ public class ProjektiController {
     @Autowired
     private ProjektiRepository projektit;
     
+    @Autowired
+    private TuntiRepository tunnit;
+    
     @RequestMapping(method=RequestMethod.GET)
     public String view(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String nimi = auth.getName();
-        model.addAttribute("projektit", projektit.findAllByUser(nimi));
+        if (tunnit.kesken().size() != 0) {
+            model.addAttribute("tunti", tunnit.kesken().get(0));
+            
+            int projekti = tunnit.kesken().get(0).getProjektiId();
+            model.addAttribute("projekti", projektit.findOne(projekti));
+            
+            return "projektit";
+        }
+
+        model.addAttribute("projektit", projektit.findAllByUser(kirjautunut()));
         
 
-        model.addAttribute("kayttaja", nimi);
+        model.addAttribute("kayttaja", kirjautunut());
         
         return "projektit";
     }
@@ -51,9 +62,7 @@ public class ProjektiController {
             return "uusi_projekti";
         }
 
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String nimi = auth.getName();
-        projektit.save(projekti, nimi);
+        projektit.save(projekti, kirjautunut());
         
         return "redirect:/projektit";
     }
@@ -65,9 +74,7 @@ public class ProjektiController {
     
     @RequestMapping(method=RequestMethod.GET, value="/kaikki")
     public String muokkaaProjekteja(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String nimi = auth.getName();
-        model.addAttribute("projektit", projektit.findAllByUser(nimi));
+        model.addAttribute("projektit", projektit.findAllByUser(kirjautunut()));
         
         return "kaikki_projektit";
     }
@@ -98,11 +105,14 @@ public class ProjektiController {
     
     @RequestMapping(value="/raportti", method=RequestMethod.GET)
     public String raportti(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String nimi = auth.getName();
-        model.addAttribute("projektit", projektit.findAllByUser(nimi));
+        model.addAttribute("projektit", projektit.findAllByUser(kirjautunut()));
         
         return "raportti";
+    }
+    
+    private String kirjautunut() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return auth.getName();
     }
     
 }

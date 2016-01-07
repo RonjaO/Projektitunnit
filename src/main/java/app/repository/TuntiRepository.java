@@ -68,9 +68,9 @@ public class TuntiRepository {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
             tunti.setAlkuaika(LocalDateTime.parse(rs.getString("alkuaika"), formatter));
 
-            if (rs.getString("loppuaika") == null || rs.getString("loppuaika").equals("")) {
-                tunti.setLoppuaika(LocalDateTime.parse(rs.getString("loppuaika"), formatter));
-            }
+            // if (rs.getString("loppuaika") != null && !rs.getString("loppuaika").equals("")) {
+            //     tunti.setLoppuaika(LocalDateTime.parse(rs.getString("loppuaika"), formatter));
+            // }
             
             return tunti;
         }

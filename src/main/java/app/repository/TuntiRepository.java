@@ -55,7 +55,7 @@ public class TuntiRepository {
     }
 
     public List<Tunti> kesken() {
-        return jdbc.query("SELECT * FROM Tunti WHERE loppuaika=IS NULL;", tuntiMapper);
+        return jdbc.query("SELECT * FROM Tunti WHERE loppuaika IS NULL;", tuntiMapper);
     }
 
     private static final RowMapper<Tunti> tuntiMapper = new RowMapper<Tunti>() {

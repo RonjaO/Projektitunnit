@@ -36,13 +36,13 @@ public class TuntiRepository {
             tuntiMapper, projektiId, kayttaja);
     }
 
-    public void save(Tunti tunti) {
+    public void save(Tunti tunti, String kayttaja) {
         LocalDateTime ldt = LocalDateTime.now();
-        String alkuaika = ldt.toString();
+        String alkuaika = "'" + ldt.toString() + "'";
         
-        String sql = "INSERT INTO TUNTI(kayttaja, projekti_id, alkuaika) VALUES(?, ?, ?)";
+        String sql = "INSERT INTO Tunti(kayttaja, projekti_id, alkuaika) VALUES((SELECT id FROM Kayttaja WHERE email=?), ?, ?)";
         
-        jdbc.update(sql, tunti.getKayttajaId(), tunti.getProjektiId(), alkuaika);
+        jdbc.update(sql, kayttaja, tunti.getProjektiId(), alkuaika);
     }
     
     public void loppu(Tunti tunti) {

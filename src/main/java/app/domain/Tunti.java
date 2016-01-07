@@ -67,6 +67,6 @@ public class Tunti {
     
     public String getKesto() {
         Duration kesto = Duration.between(this.alkuaika, this.loppuaika);
-        return kesto.toHours() + "." + kesto.toMinutes();
+        return kesto.toString();
     }
 }

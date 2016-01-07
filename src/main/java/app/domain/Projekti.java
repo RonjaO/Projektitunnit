@@ -76,7 +76,7 @@ public class Projekti {
     }
     
     public String getTunnit() {
-        if (this.kesto.equals("")) {
+        if (this.kesto.equals("") || this.kesto == null) {
             return " – ";
         }
         String[] kaikkiTunnit = this.kesto.split(":");

@@ -40,7 +40,7 @@ public class TuntiRepository {
         LocalDateTime ldt = LocalDateTime.now();
         String alkuaika = "'" + ldt.toString() + "'";
         
-        String sql = "INSERT INTO Tunti(kayttaja, projekti_id, alkuaika) VALUES((SELECT id FROM Kayttaja WHERE email=?), ?, timestamp ?)";
+        String sql = "INSERT INTO Tunti(kayttaja, projekti_id, alkuaika) VALUES((SELECT id FROM Kayttaja WHERE email=?), ?, cast(? as timestamp))";
         
         jdbc.update(sql, kayttaja, tunti.getProjektiId(), alkuaika);
     }

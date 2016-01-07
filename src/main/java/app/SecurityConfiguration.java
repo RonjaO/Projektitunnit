@@ -49,7 +49,7 @@ public class SecurityConfiguration extends  WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         // Ignoroidaan public/CSS-kansion osalta Spring security, jotta tyylit toimii
-        web.ignoring().antMatchers("/public/**");
+        web.ignoring().antMatchers("/css/**");
     }
 
     // @Configuration

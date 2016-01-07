@@ -16,7 +16,7 @@ public class Projekti {
     @Length(min = 5, max = 200, message="Kuvaus voi olla korkeintaan 200 merkkiä pitkä")
     private String kuvaus;
     
-    private Duration kesto;
+    private String kesto;
     
     public Projekti() {
         
@@ -67,27 +67,18 @@ public class Projekti {
         this.kuvaus = kuvaus;
     }
     
-    public Duration getKesto() {
+    public String getKesto() {
         return this.kesto;
     }
     
-    public void setKesto(Duration kesto) {
+    public void setKesto(String kesto) {
         this.kesto = kesto;
     }
     
     public String getTunnit() {
-        long tunti = 0;
-        long minuutti = this.kesto.toMinutes();
-
-        while (true) {
-            if (minuutti >= 60) {
-                tunti++;
-                minuutti = minuutti - 60;
-            } else {
-                break;
-            }
-        }        
-        return tunti + "." + minuutti;
+        String[] kaikkiTunnit = this.kesto.split(":");
+        
+        return kaikkiTunnit[0] + "." + kaikkiTunnit[1];
     }
     
 }

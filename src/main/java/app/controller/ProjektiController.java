@@ -46,7 +46,7 @@ public class ProjektiController {
             model.addAttribute("tunti", tunti.get(0));
 
             int projekti = tunnit.kesken().get(0).getProjektiId();
-            // model.addAttribute("projekti", projektit.findOne(projekti));
+            model.addAttribute("projekti", projektit.findOne(projekti));
 
             return "projektit";
         }

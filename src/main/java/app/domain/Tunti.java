@@ -58,7 +58,7 @@ public class Tunti {
     }
     
     public void setProjektiId(int id) {
-        this.id = id;
+        this.projektiId = id;
     }
     
     public String getPaivays() {

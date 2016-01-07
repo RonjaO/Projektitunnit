@@ -38,7 +38,7 @@ public class ProjektiRepository {
     }
     
     public void save(Projekti projekti, String kayttaja) {
-        String sql = "INSERT INTO projekti(nimi, kuvaus, omistaja_kayttaja) VALUES (?, ?, (SELECT id FROM Kayttaja WHERE email=?))";
+        String sql = "INSERT INTO projekti(nimi, kuvaus, omistaja_kayttaja, kesto) VALUES (?, ?, (SELECT id FROM Kayttaja WHERE email=?), 'PT0H0M')";
         
         jdbc.update(sql, projekti.getNimi(), projekti.getKuvaus(), kayttaja);
     }

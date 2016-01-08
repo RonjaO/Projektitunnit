@@ -61,7 +61,7 @@ public class ProjektiRepository {
         String sql = "UPDATE Projekti SET kesto=kesto+ CAST(? AS interval) WHERE id=?";
         
         jdbc.update(sql, tunti.toString(), projektiId);
-        System.out.println("tallennettu tietokantaan");
+        System.out.println("tallennettu tietokantaan projekti-id: " + projektiId);
     }
     
     

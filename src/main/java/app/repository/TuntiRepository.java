@@ -2,6 +2,7 @@ package app.repository;
 
 import app.domain.Tunti;
 import app.domain.Projekti;
+import app.repository.ProjektiRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +17,16 @@ import java.sql.SQLException;
 import java.util.List;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.Duration;
 
 @Repository
 public class TuntiRepository {
     
     @Autowired
     private JdbcTemplate jdbc;
+    
+    @Autowired
+    private ProjektiRepository projektit;
     
     public Tunti findOne(int id) {
         return jdbc.queryForObject("SELECT * FROM Tunti Where id = ?", tuntiMapper, id);
@@ -54,9 +59,9 @@ public class TuntiRepository {
         
         jdbc.update(sql, loppuaika, tunti.getKuvaus(), tunti.getId());
 
-        Duration kesto = tunti.getKesto();
+         String kesto = tunti.getKesto();
         projektit.lisaaTunti(tunti.getProjektiId(), kesto);
-    }        <link th:href="@{/css/styles.css}" rel="stylesheet"  href="../../css/styles.css"/>
+    } 
 
     public List<Tunti> kesken() {
         return jdbc.query("SELECT * FROM Tunti WHERE loppuaika IS NULL;", tuntiMapper);

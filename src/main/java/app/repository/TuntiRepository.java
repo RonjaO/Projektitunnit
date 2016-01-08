@@ -51,8 +51,9 @@ public class TuntiRepository {
     }
     
     public void loppu(Tunti tunti) {
+        Tunti loppuvaTunti = findOne(tunti.getId());
         LocalDateTime ldt = LocalDateTime.now();
-        tunti.setLoppuaika(ldt);
+        loppuvaTunti.setLoppuaika(ldt);
         String loppuaika = ldt.toString();
         
         String sql = "UPDATE Tunti SET loppuaika=cast (? as timestamp), kuvaus=? WHERE id=?";
@@ -60,7 +61,7 @@ public class TuntiRepository {
         jdbc.update(sql, loppuaika, tunti.getKuvaus(), tunti.getId());
 
         System.out.println("Lasketaan kesto");
-         Duration kesto = Duration.between(tunti.getAlkuaika(), ldt);
+         Duration kesto = Duration.between(loppuvaTunti.getAlkuaika(), ldt);
          System.out.println("kesto: " + kesto.toString());
         // projektit.lisaaTunti(tunti.getProjektiId(), kesto);
     } 

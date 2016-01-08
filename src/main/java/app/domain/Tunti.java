@@ -29,7 +29,7 @@ public class Tunti {
         this.kuvaus = kuvaus;
     }
     
-    public LocalDateTime getalkuaika() {
+    public LocalDateTime getAlkuaika() {
         return this.alkuaika;
     }
     

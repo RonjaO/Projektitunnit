@@ -55,6 +55,7 @@
                     <p th:text="${projekti.kuvaus}">Projektin kuvaus</p>
                     <form th:method="POST" th:action="@{/projektit/tunti/{id}(id=${tunti.id})}" action="#">
                         <label>Kommenttisi: </label> <input type="text" name="kuvaus" />
+                        <input type="hidden" th:value="${projekti.id}" name="projektiId" />
                        <input type="submit" value="Lopeta" class="toiminto" />
                     </form>
                     

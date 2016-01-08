@@ -59,7 +59,7 @@ public class TuntiRepository {
         
         jdbc.update(sql, loppuaika, tunti.getKuvaus(), tunti.getId());
 
-         String kesto = tunti.getKesto();
+         Duration kesto = tunti.getDuration();
         projektit.lisaaTunti(tunti.getProjektiId(), kesto);
     } 
 

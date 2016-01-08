@@ -47,12 +47,16 @@ public class TuntiRepository {
     
     public void loppu(Tunti tunti) {
         LocalDateTime ldt = LocalDateTime.now();
+        tunti.setLoppuaika(ldt);
         String loppuaika = ldt.toString();
         
         String sql = "UPDATE Tunti SET loppuaika=cast (? as timestamp), kuvaus=? WHERE id=?";
         
         jdbc.update(sql, loppuaika, tunti.getKuvaus(), tunti.getId());
-    }
+
+        Duration kesto = tunti.getKesto();
+        projektit.lisaaTunti(tunti.getProjektiId(), kesto);
+    }        <link th:href="@{/css/styles.css}" rel="stylesheet"  href="../../css/styles.css"/>
 
     public List<Tunti> kesken() {
         return jdbc.query("SELECT * FROM Tunti WHERE loppuaika IS NULL;", tuntiMapper);

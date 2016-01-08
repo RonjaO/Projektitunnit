@@ -66,6 +66,9 @@ public class Tunti {
     }
     
     public String getKesto() {
+        if (this.loppuaika == null) {
+            return "kesken...";
+        }
         Duration kesto = Duration.between(this.alkuaika, this.loppuaika);
         long min = kesto.toMinutes();
         long h = 0;
@@ -78,6 +81,6 @@ public class Tunti {
                 break;
             }
         }
-        return h + "." + min;
+        return h + " h " + min + " min";
     }
 }

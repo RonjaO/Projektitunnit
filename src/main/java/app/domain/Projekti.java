@@ -76,12 +76,9 @@ public class Projekti {
     }
     
     public String getTunnit() {
-        if (this.kesto.equals("") || this.kesto == null) {
-            return " – ";
-        }
         String[] kaikkiTunnit = this.kesto.split(":");
         
-        return kaikkiTunnit[0] + "." + kaikkiTunnit[1];
+        return kaikkiTunnit[0] + " h " + kaikkiTunnit[1] + " min";
     }
     
 }

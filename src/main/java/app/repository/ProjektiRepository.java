@@ -55,10 +55,10 @@ public class ProjektiRepository {
         jdbc.update(sql, projekti.getNimi(), projekti.getKuvaus(), id);
     }
     
-    public void lisaaTunti(Projekti projekti, Duration tunti) {
+    public void lisaaTunti(int projektiId, Duration tunti) {
         String sql = "UPDATE Projekti SET kesto=kesto+? WHERE id=?";
         
-        jdbc.update(sql, tunti.toString(), projekti.getId());
+        jdbc.update(sql, tunti.toString(), projektiId);
     }
     
     

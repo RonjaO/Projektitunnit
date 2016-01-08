@@ -86,7 +86,9 @@ public class Tunti {
     }
     
     public Duration getDuration() {
+        System.out.println("Lasketaan kesto");
         Duration kesto = Duration.between(this.alkuaika, this.loppuaika);
+        System.out.println("Kesto: " + kesto.toString());
         
         return kesto;
         

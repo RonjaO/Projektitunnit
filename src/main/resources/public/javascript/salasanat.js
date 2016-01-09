@@ -10,14 +10,16 @@ salasana2.addEventListener('change', function(eventInformation) {
 
 function vertaile(salasana2) {
     var salasana = document.getElementById("salasana").value;
-    
+    var virhe = document.getElementById("virhe");
+    var laheta = document.getElementById("laheta");
 
     if (salasana != salasana2) {
-        document.getElementById("virhe").innerHTML = "Salasanat eivät tästmää";
         console.log("Salasanoissa virhe, ") + salasana + " ja " + salasana2;
+        virhe.innerHTML = "Salasanat eivät täsmää"
+        laheta.disabled = true;
     } else if (salasana == salasana2){
+        virhe.innerHTML = "";
         // Laitetaan lähetä-nappula käyttöön
-        document.getElementById("laheta").disabled = false;
-        document.getElementById("virhe").innerHTML = "";
+        laheta.disabled = false;
     }
 }

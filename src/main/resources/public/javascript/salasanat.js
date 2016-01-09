@@ -18,5 +18,6 @@ function vertaile(salasana2) {
     } else if (salasana == salasana2){
         // Laitetaan lähetä-nappula käyttöön
         document.getElementById("laheta").disabled = false;
+        document.getElementById("virhe").innerHTML = "";
     }
 }

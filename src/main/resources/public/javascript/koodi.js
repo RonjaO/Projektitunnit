@@ -2,13 +2,11 @@ var aloita = document.getElementById("aloita");
 aloita.disabled = true;
 console.log("Aloita on himmennetty");
 
-if (document.getElementById("projekti")) {
-    var radiobuttonit = document.getElementsById("projekti");
+var radiobuttonit = document.getElementsByTagName("input");
 
-    for (var i = 0; i < radiobuttonit.length; i00) {
-        radiobuttonit[i].addEventListener('click', function(eventInfo) {
-            aloita.disabled = false;
-            console.log("Aloita pitäis toimia");
-        }, false)
+for (i = 0; i < radiobuttonit.length; i++) {
+    if (radiobuttonit[i].type.toLowerCase() == "radio") {
+        aloita.disabled = false;
+        console.log("Aloita on käytössä");
     }
 }

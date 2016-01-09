@@ -6,7 +6,10 @@ var radiobuttonit = document.getElementsByTagName("input");
 
 for (i = 0; i < radiobuttonit.length; i++) {
     if (radiobuttonit[i].type.toLowerCase() == "radio") {
-        aloita.disabled = false;
-        console.log("Aloita on käytössä");
+        radiobuttonit[i].addEventListener("clisck", function(eventInfo) {
+            aloita.disabled = false;
+            console.log("Aloita on käytössä");
+            
+        });
     }
 }

@@ -1,4 +1,4 @@
-var aloita = document.getElemtnById("aloita");
+var aloita = document.getElementById("aloita");
 aloita.disabled = true;
 var radiobuttonit = document.getElementsById("projekti");
 

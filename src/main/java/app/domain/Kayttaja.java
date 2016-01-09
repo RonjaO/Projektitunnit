@@ -8,17 +8,17 @@ public class Kayttaja {
     
     private int id;
 
-        // Sähköposti toimii käyttäjätunnuksena
-    @NotBlank
-    @Email
+    // Sähköposti toimii käyttäjätunnuksena
+    @NotBlank(message = "Sähköposti ei saa olla tyhjä")
+    @Email(message = "Sähköpostin tulee olla muotoa esim@example.com")
     private String email;
     
-    @NotBlank
-    @Length(max = 50)
+    @NotBlank(message = "Nimi on pakollinen tieto")
+    @Length(max = 50, message = "Nimen pituus saa olla korkeintaan 50 merkkiä")
     private String nimi;
     
-    @NotBlank
-    @Length(min=8, max = 50)
+    @NotBlank(message = "Salasana ei saa olla tyhjä")
+    @Length(min=8, max = 50, message = "Salasanan pituus tulee olla 8-50 merkkiä")
     private String password;
     
     public int getId() {

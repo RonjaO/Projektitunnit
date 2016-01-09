@@ -50,6 +50,7 @@ public class SecurityConfiguration extends  WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         // Ignoroidaan public/CSS-kansion osalta Spring security, jotta tyylit toimii
         web.ignoring().antMatchers("/css/**");
+        web.ingoring().antMatchers("javascript/**");
     }
 
     // @Configuration

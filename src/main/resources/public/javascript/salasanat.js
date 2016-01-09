@@ -1,4 +1,4 @@
-var salasana = document.getElemntById("salasana").value;
+var salasana = document.getElementById("salasana").value;
 var salasana2 = document.getElementById("salasana2").value;
 
 if (salasana2 = "" ) {

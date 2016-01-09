@@ -1,6 +1,6 @@
 console.log("moi");
 
-document.getElementById()"laheta").disabled = true;
+document.getElementById("laheta").disabled = true;
 
 var salasana2 = document.getElementById("salasana2");
 

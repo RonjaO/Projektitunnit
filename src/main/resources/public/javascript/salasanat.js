@@ -15,7 +15,7 @@ function vertaile(salasana2) {
     if (salasana != salasana2) {
         document.getElementById("virhe").innerHTML = "Salasanat eivät tästmää";
         console.log("Salasanoissa virhe, ") + salasana + " ja " + salasana2;
-    } else if {
+    } else if (salasana == salasana2){
         // Laitetaan lähetä-nappula käyttöön
         document.getElementById("laheta").disabled = false;
     }

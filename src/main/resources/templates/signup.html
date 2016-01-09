@@ -27,7 +27,7 @@
                                 <p th:if="${#fields.hasErrors('nimi')}" th:errors="*{nimi}"> virheviesti </p></td> </tr>
                         <tr> <td>Salasana: *</td> <td><input type="password" th:field="*{password}" id="salasana" /> <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"> virheviesti</p></td> </tr>
                         <tr> <td>Salasana uudelleen: * </td> <td> <input type="password" id="salasana2" /> <p id="virhe"></p> </td> </tr>
-                        <tr> <td> </td> <td><input type="submit" value="Rekisteröidy" /></td> </tr>
+                        <tr> <td> </td> <td><input type="submit" value="Rekisteröidy" id="laheta" disabled="disabled"/></td> </tr>
                     </table>
                 </form>
 

@@ -1,5 +1,7 @@
 console.log("moi");
 
+document.getElementById)"laheta").disabled = true;
+
 var salasana2 = document.getElementById("salasana2");
 
 salasana2.addEventListener('change', function(eventInformation) {
@@ -13,5 +15,8 @@ function vertaile(salasana2) {
     if (salasana != salasana2) {
         document.getElementById("virhe").innerHTML = "Salasanat eivät tästmää";
         console.log("Salasanoissa virhe, ") + salasana + " ja " + salasana2;
-    }   
+    } else if {
+        // Laitetaan lähetä-nappula käyttöön
+        document.getElementById("laheta").disabled = false;
+    }
 }

@@ -23,6 +23,10 @@
 
 
                 <h2>Kirjaudu sisään</h2>
+                
+                <div th:if="${tervehdys}"> 
+                    <p>Tervetuloa, <span th:text="${tervehdys}">nimi</span>! Kirjaudu vielä sisään.</p>
+                </div>
 
                 <div th:if="${param.error}">
                     Käyttäjätunnus tai salasana on väärä
@@ -31,12 +35,12 @@
                     Olet kirjautunut ulos
                 </div>
 
-                <p>Jos sinulla ei ole vielä tunnuksia, <a href="">rekisteröidy</a>.</p>
+                <p>Jos sinulla ei ole vielä tunnuksia, <a th:href="@{/signup}" color="#ffaa44">rekisteröidy</a>.</p>
 
                 <form th:action="@{/login}" action="/login" method="POST" >
                     <table>
-                        <tr> <td>Sähköposti:</td> <td> <input type="text" placeholder="Username" name="email" /> </td> </tr>
-                        <tr> <td>Salasana:</td> <td> <input type="password" name="password" placeholder="Password" /> </td> </tr> 
+                        <tr> <td>Sähköposti:</td> <td> <input type="text" name="email" /> </td> </tr>
+                        <tr> <td>Salasana:</td> <td> <input type="password" name="password" /> </td> </tr> 
                         <tr> <td> </td> <td><input type="submit" value="Kirjaudu" /></td> </tr>
                     </table>
                 </form>

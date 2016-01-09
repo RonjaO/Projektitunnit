@@ -28,12 +28,14 @@ public class KayttajaController {
     }
     
     @RequestMapping(method=RequestMethod.POST)
-    public String signup(@Valid @ModelAttribute Kayttaja kayttaja, BindingResult bindingResult) {
+    public String signup(@Valid @ModelAttribute Kayttaja kayttaja, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             return "signup";
         }
         
         kayttajat.save(kayttaja);
+        
+        redirectAttributes.addFlashAttribute("tervehdys", kayttaja.getNimi());
         
         return "redirect:/login";
     }

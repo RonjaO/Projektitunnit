@@ -18,12 +18,12 @@
 
                 <form method="POST" th:action="@{/projektit/{id}/muokkaa(id=${projekti.id})}" action="#" th:object="${projekti}">
                     <table>
-                        <tr> <td>Projektin nimi: * </td>
-                            <td> <input type="text" class="project-name" th:field="*{nimi}" /> </td>
+                        <tr> <td><label for="name">Projektin nimi: * </label></td>
+                            <td> <input type="text" class="project-name" th:field="*{nimi}" id="name" /> </td>
                             <td th:if="${#fields.hasErrors('nimi')}" th:errors="*{nimi}"> nimi virheviesti </td>
                         </tr>
-                        <tr> <td>Projektin kuvaus: </td>
-                             <td> <textarea th:field="*{kuvaus}" class="project-desc" ></textarea>
+                        <tr> <td><label for="description">Projektin kuvaus: </label></td>
+                             <td> <textarea th:field="*{kuvaus}" class="project-desc" id="description" ></textarea>
                             <p th:if="${#fields.hasErrors('kuvaus')}" th:errors="*{kuvaus}">kuvaus virheviesti</p>
                                   <input type="submit" class="new-project-submit" value="Muokkaa" /> </td> </tr>
                     </table>

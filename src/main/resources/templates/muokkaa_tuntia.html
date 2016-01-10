@@ -20,8 +20,8 @@
                         <tr> <td>Aika: </td>
                             <td> <span th:text="${tunti.paivays}"></span>: <span th:text="${tunti.kesto}"></span> </td>
                         </tr>
-                        <tr> <td>Kommentit: </td>
-                             <td> <textarea th:field="*{kuvaus}" class="project-desc" th:text="${tunti.kuvaus}"></textarea>
+                        <tr> <td><label for="comment">Kommentit: </label></td>
+                             <td> <textarea th:field="*{kuvaus}" class="project-desc" th:text="${tunti.kuvaus}" id="comment" ></textarea>
                             <p th:if="${#fields.hasErrors('kuvaus')}" th:errors="*{kuvaus}">kuvaus virheviesti</p>
                                   <input type="submit" class="new-project-submit" value="Muokkaa" /> </td> </tr>
                     </table>

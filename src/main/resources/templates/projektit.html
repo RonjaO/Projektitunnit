@@ -27,7 +27,7 @@
                             <tbody>
                                 <tr th:if="${projektit.empty}"> <td colspan="2">Ei projekteja. Aloita <a th:href="@{/projektit/uusi_projekti}">luomalla projekti</a>!</td> </tr>
                                 <tr th:each="projekti : ${projektit}"> 
-                                    <td> <input type="radio" name="projektiId" th:value="${projekti.id}" id="projekti" /><label th:for="${projekti.id}" th:text="${projekti.nimi}">nimi</label> </td> 
+                                    <td> <input type="radio" name="projektiId" th:value="${projekti.id}" th:id="${projekti.id}" /><label th:for="${projekti.id}" th:text="${projekti.nimi}">nimi</label> </td> 
                                     <td th:text="${projekti.tunnit}"> – </td> 
                                 </tr>
                             </tbody>

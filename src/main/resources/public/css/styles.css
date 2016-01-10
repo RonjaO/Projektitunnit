@@ -130,7 +130,7 @@ table {
     background-color: #ff8888;
 }
 
-td a {
+td a, p a {
     color: #ffbb44;
     text-decoration: initial;
 }

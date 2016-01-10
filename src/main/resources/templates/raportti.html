@@ -37,7 +37,7 @@
                         <tbody>
                             <tr th:if="${tunnit.empty}"> <td colspan="3" >Ei vielä tunteja</td> </tr>
                             <tr th:each="tunti : ${tunnit}"> 
-                                <td th:text="${tunti.paivays}">aika</td> <td th:text="${tunti.kesto}"> – </td> <td th:text="${tunti.kuvaus}">kuvaus</td> <td><a th:href="@{/tunti/{id}<id=${tunti.id})}">Muokkaa</a> </td>
+                                <td th:text="${tunti.paivays}">aika</td> <td th:text="${tunti.kesto}"> – </td> <td th:text="${tunti.kuvaus}">kuvaus</td> <td><a th:href="@{/tunti/{id}(id=${tunti.id})}">Muokkaa</a> </td>
                             </tr>
                         </tbody>
                     </table>

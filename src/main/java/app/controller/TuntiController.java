@@ -27,7 +27,7 @@ public class TuntiController {
     @Autowired
     private ProjektiRepository projektit;
     
-    @RequestMapping(value="/projektit/raportti/{projektiId}", method=RequestMethod.POST)
+    @RequestMapping(value="/projektit/raportti/{projektiId}", method=RequestMethod.GET)
     public String projektitunnit(@PathVariable int projektiId, RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute("tunnit", tunnit.findAllByKayttajaAndProjekti(kirjautunut(), projektiId));
         redirectAttributes.addFlashAttribute("projekti", projektit.findOne(projektiId));
@@ -37,10 +37,7 @@ public class TuntiController {
     
     @RequestMapping(value="/projektit/tunti", method=RequestMethod.POST)
     public String aloitaTunti(@RequestParam Integer projektiId, RedirectAttributes redirectAttributes) {
-        tunnit.save(projektiId, kirjautunut());
-        
-        redirectAttributes.addFlashAttribute("tunti", "joopajoo");
-        
+        tunnit.save(projektiId, kirjautunut());        
         return "redirect:/projektit";
     }
     
@@ -51,6 +48,30 @@ public class TuntiController {
         return "redirect:/projektit";
     }
     
+    @RequestMapping(value="/tunti/{id}", method=RequestMethod.GET)
+    public String naytaMuokkaus(@ModelAttribute Tunti tunti) {
+        return "muokkaa_tuntia";
+    }
+
+    @RequestMapping(value="/tunti/{id}", method=RequestMethod.POST) 
+    public String muokkaa(@Valid @ModelAttribute Tunti tunti, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "muokkaa_tuntia";
+        }
+            
+        tunnit.update(tunti);
+            
+        return "redirect:/projektit/raportti/" + tunti.getProjektiId();
+    }
+    
+    @RequestMapping(value="/tunti/{id}", method=RequestMethod.DELETE)
+    public String poista(@PathVariable int id) {
+        int projektiId = tunnit.findOne(id).getProjektiId();
+        tunnit.delete(id);
+        
+        return "redirect:/projektit/raportti/" + projektiId;
+    }
+
     private String kirjautunut() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         return auth.getName();

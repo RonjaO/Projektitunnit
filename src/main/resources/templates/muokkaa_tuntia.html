@@ -6,27 +6,29 @@
         <link th:href="@{/css/styles.css}" rel="stylesheet"  href="../../css/styles.css"/>
     </head>
 
-    <body >
+    <body>
         <div class="canvas">
             <div th:replace="fragments/header :: header"> 
             </div>
 
             <div class="sisalto">
-                <h2>Muokkaa projektia</h2>
+                <h2>Muokkaa tekemääsi työaikaa</h2>
 
-                <p>Anna projektillesi nimi. Halutessasi voit myös kuvailla projektiasi.</p>
 
-                <form method="POST" th:action="@{/projektit/{id}/muokkaa(id=${projekti.id})}" action="#" th:object="${projekti}">
+                <form th:method="POST" th:action="@{/tunti/{id}(id=${tunti.id})}" action="#" th:object="${tunti}">
                     <table>
-                        <tr> <td>Projektin nimi: * </td>
-                            <td> <input type="text" class="project-name" th:field="*{nimi}" /> </td>
-                            <td th:if="${#fields.hasErrors('nimi')}" th:errors="*{nimi}"> nimi virheviesti </td>
+                        <tr> <td>Aika: </td>
+                            <td> <span th:text="${tunti.paivays}"></span>: <span th:text="${tunti.kesto}"></span> </td>
                         </tr>
-                        <tr> <td>Projektin kuvaus: </td>
-                             <td> <textarea th:field="*{kuvaus}" class="project-desc" ></textarea>
+                        <tr> <td>Kommentit: </td>
+                             <td> <textarea th:field="*{kuvaus}" class="project-desc" th:text="${tunti.kuvaus}"></textarea>
                             <p th:if="${#fields.hasErrors('kuvaus')}" th:errors="*{kuvaus}">kuvaus virheviesti</p>
                                   <input type="submit" class="new-project-submit" value="Muokkaa" /> </td> </tr>
                     </table>
+                </form>
+                
+                <form th:action="@{/tunti/{id}(id=${tunti.id})}" th:method="DELETE" action="#">
+                    <input type="submit" value="poista" class="poista" />
                 </form>
 
             </div>

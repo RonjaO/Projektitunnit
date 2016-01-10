@@ -2,10 +2,13 @@ package app.domain;
 
 import java.time.LocalDateTime;
 import java.time.Duration;
+import org.hibernate.validator.constraints.Length;
 
 public class Tunti {
     
     private int id;
+    
+    @Length(max = 200, message = "Kommentin pituus saa olla enintään 200 merkkiä")
     private String kuvaus;
 
     private LocalDateTime alkuaika;
@@ -86,9 +89,7 @@ public class Tunti {
     }
     
     public Duration getDuration() {
-        System.out.println("Lasketaan kesto");
         Duration kesto = Duration.between(this.alkuaika, this.loppuaika);
-        System.out.println("Kesto: " + kesto.toString());
         
         return kesto;
         

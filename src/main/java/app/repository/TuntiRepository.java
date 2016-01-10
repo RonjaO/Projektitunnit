@@ -50,6 +50,22 @@ public class TuntiRepository {
         jdbc.update(sql, kayttaja, projektiId, alkuaika);
     }
     
+    public void update(Tunti tunti) {
+        String sql ="UPDATE Tunti SET kuvaus=? WHERE id=?";
+        
+        jdbc.update(sql, tunti.getKuvaus(), tunti.getId());
+    }
+    
+    public void delete(int id) {
+        Tunti tunti = findOne(id);
+        Duration kesto = tunti.getDuration();
+        
+        projektit.poistaTunti(kesto, tunti.getProjektiId());
+        
+        String sql = "DELETE FROM Tunti WHERE id=?";
+        jdbc.update(sql, id);
+    }
+    
     public void loppu(Tunti tunti) {
         Tunti loppuvaTunti = findOne(tunti.getId());
         LocalDateTime ldt = LocalDateTime.now();
@@ -61,9 +77,7 @@ public class TuntiRepository {
         jdbc.update(sql, loppuaika, tunti.getKuvaus(), tunti.getId());
 
          Duration kesto = Duration.between(loppuvaTunti.getAlkuaika(), ldt);
-         System.out.println("Tunnit, kesto: " + kesto.toString());
         projektit.lisaaTunti(tunti.getProjektiId(), kesto);
-        System.out.println("Lähetetty projektille");
     } 
 
     public List<Tunti> kesken() {

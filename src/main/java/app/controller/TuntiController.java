@@ -55,14 +55,16 @@ public class TuntiController {
     }
 
     @RequestMapping(value="/tunti/{id}", method=RequestMethod.POST) 
-    public String muokkaa(@Valid @ModelAttribute Tunti tunti, BindingResult bindingResult) {
+    public String muokkaa(@Valid @ModelAttribute Tunti tunti, @PathVariable int id, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "muokkaa_tuntia";
         }
+        
+        tunti.setId(id);
             
         tunnit.update(tunti);
             
-        return "redirect:/projektit/raportti/" + tunti.getProjektiId();
+        return "redirect:/projektit/raportti/" + tunnit.findOne(id).getProjektiId();
     }
     
     @RequestMapping(value="/tunti/{id}", method=RequestMethod.DELETE)

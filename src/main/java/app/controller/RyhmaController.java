@@ -20,5 +20,10 @@ public class RyhmaController {
     public String view(Model model) {
         return "uusi_ryhma";
     }
+    
+    @RequestMapping(value="/ryhmat", method=RequestMethod.GET)
+    public String ryhmat() {
+        return "ryhmat";
+    }
 
 }

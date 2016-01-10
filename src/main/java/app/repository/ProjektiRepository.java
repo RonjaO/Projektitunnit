@@ -34,7 +34,8 @@ public class ProjektiRepository {
         return jdbc.query("SELECT * FROM projekti ORDER BY nimi", projektiMapper);
     }
     
-    public List<Projekti> findAllByUser(String kayttaja) {        return jdbc.query("SELECT * FROM projekti WHERE omistaja_kayttaja=(SELECT id FROM Kayttaja WHERE email=?);", projektiMapper, kayttaja);
+    public List<Projekti> findAllByUser(String kayttaja) {
+        return jdbc.query("SELECT * FROM Projekti WHERE omistaja_kayttaja=(SELECT id FROM Kayttaja WHERE email=?); ORDER BY nimi", projektiMapper, kayttaja);
     }
     
     public void save(Projekti projekti, String kayttaja) {

@@ -37,7 +37,7 @@ public class TuntiRepository {
     }
     
     public List<Tunti> findAllByKayttajaAndProjekti(String kayttaja, int projektiId) {
-        return jdbc.query("SELECT * FROM Tunti WHERE projekti_id=? AND kayttaja=(SELECT id FROM Kayttaja WHERE email=?);",
+        return jdbc.query("SELECT * FROM Tunti WHERE projekti_id=? AND kayttaja=(SELECT id FROM Kayttaja WHERE email=?) ORDER BY alkuaika",
             tuntiMapper, projektiId, kayttaja);
     }
 

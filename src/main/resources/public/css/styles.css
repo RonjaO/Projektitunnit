@@ -119,9 +119,19 @@ table {
 #raportti .raportti,
 #uusi_projekti .uusi_projekti,
 #ryhma .ryhma {
-    color: #ffaa44;
+    color: #ffbb44;
 }
 
 .toiminto {
     margin: 30px;
 }
+
+.poista {
+    background-color: #ff8888;
+}
+
+p a {
+    color: #ffbb44;
+    text-decoration: initial;
+}
+

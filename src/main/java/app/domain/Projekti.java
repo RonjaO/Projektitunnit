@@ -13,7 +13,7 @@ public class Projekti {
     @Length(min = 1, max =50, message="Nimen pituus saa olla korkeitaan 50 merkkiä")
     private String nimi;
 
-    @Length(min = 5, max = 200, message="Kuvaus voi olla korkeintaan 200 merkkiä pitkä")
+    @Length(max = 200, message="Kuvaus voi olla korkeintaan 200 merkkiä pitkä")
     private String kuvaus;
     
     private String kesto;

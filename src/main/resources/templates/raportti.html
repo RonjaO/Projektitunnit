@@ -16,12 +16,12 @@
 
                 <table class="taulukko">
                     <thead>
-                        <tr> <th>Projekti</th> <th>Tunteja yht.</th> </tr>
+                        <tr> <th>Projekti</th> <th> </th> <th>Tunteja yht.</th> </tr>
                     </thead>
                     <tbody>
                         <tr th:if="${projektit.empty}"> <td colspan="2">Ei projekteja</td> </tr>
                         <tr th:each="projekti : ${projektit}"> 
-                            <td> <span th:text="${projekti.nimi}">nimi</span><form th:method="GET" th:action="@{/projektit/raportti/{id}(id=${projekti.id})}"> 
+                            <td th:text="${projekti.nimi}">nimi</td> <td><form th:method="GET" th:action="@{/projektit/raportti/{id}(id=${projekti.id})}"> 
                                 <button  value="${projekti.id}" type="submit">Näytä</button></form> </td> 
                             <td th:text="${projekti.tunnit}"> – </td> </tr>
                     </tbody>
@@ -35,7 +35,7 @@
                             <tr> <td>Päiväys</td> <td>Yhteensä</td> <td>Kommentit</td> <td>Muokkaa</td> </tr>
                         </thead>
                         <tbody>
-                            <tr th:if="${tunnit.empty}"> <td colspan="3" >Ei vielä tunteja</td> </tr>
+                            <tr th:if="${tunnit.empty}"> <td colspan="4" >Ei vielä tunteja</td> </tr>
                             <tr th:each="tunti : ${tunnit}"> 
                                 <td th:text="${tunti.paivays}">aika</td> <td th:text="${tunti.kesto}"> – </td> <td th:text="${tunti.kuvaus}">kuvaus</td> <td><a th:href="@{/tunti/{id}(id=${tunti.id})}">Muokkaa</a> </td>
                             </tr>

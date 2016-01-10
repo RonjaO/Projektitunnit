@@ -22,13 +22,14 @@ CREATE TABLE Projekti (
     omistaja_kayttaja integer REFERENCES Kayttaja(id),
     omistaja_ryhma integer REFEReNCES Ryhma(id),
     nimi varchar(50) NOT NULL,
-    kuvaus varchar(200)
+    kuvaus varchar(200),
+    kesto interval
 );
 
 CREATE TABLE Tunti (
     id SERIAL PRIMARY KEY,
     kayttaja integer REFERENCES Kayttaja(id) NOT NULL,
-    projekti_id INTEGER REFERENCES Projekti(id) NOT NULL,
+    projekti_id INTEGER REFERENCES Projekti(id) ON DELETE CASCADE NOT NULL,
     alkuaika timestamp NOT NULL,
     loppuaika timestamp,
     kuvaus varchar(400)

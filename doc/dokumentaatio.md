@@ -105,6 +105,7 @@ Atribuutti   | Arvojoukko     | Kuvaus
 -------------|----------------|--------
 nimi         | Merkkijono (max 50) | Projektin nimi
 kuvaus       | Merkkijono (max 200) | Valinnainen kuvaus projektille
+kesto   | interval  | Projektien kaikkien tuntien kestot yhteensä
 
 Tietokohde: Tunti
 
@@ -121,13 +122,14 @@ Atribuutti   | Arvojoukko     |  Kuvaus
 nimi         | merkkijono (max 50) | Ryhmän nimi
 kuvaus       | merkkijono (max 200) | Valinnainen kuvaus ryhmlle
 
+
 #4. Relaatiotietokantakaavio
 
 ```
 [Kayttaja | (pk)id; sahkoposti; salasana; nimi]
-[Projekti | (pk)id; (fk) kayttaja:Kayttaja; (fk)ryhma:Ryhma; nimi; kuvaus]
+[Projekti | (pk)id; (fk) kayttaja:Kayttaja; (fk)ryhma:Ryhma; nimi; kuvaus; kesto]
 [Tunti | (pk)id; (fk)projekti:Projekti;  (fk)kayttaja:Kayttaja; alkamisaika; loppumisaika; kommentit]
-[Ryhma | (pk)id; nimi; kuvaus]
+[Ryhma | (pk)id; (fk)johtaja:Kayttaja; nimi; kuvaus]
 [Kayttaja-Ryhma | (fk)kayttaja:Kayttaja; (fk)ryhma:Ryhma]
 
 [Kayttaja]-*[Projekti]
@@ -141,3 +143,35 @@ kuvaus       | merkkijono (max 200) | Valinnainen kuvaus ryhmlle
 #5. Käynnistys/käyttöohje
 
 Projektituntiseuranta-sovellus löytyy osoitteesta https://fierce-depths-9722.herokuapp.com. Testikäyttäjän käyttäjätunnus on "matti@example.com" ja salasana "matti123". Kaikki sovelluksen toiminnot vaativat sisäänkirjautumisen.
+
+
+#6. Järjestelmän yleisrakenne
+
+Projektituntiseuranta-sovelluksessa on pyritty noudattamaan mvc-mallia. Sen lisäksi kansiorakenne on Spring Bootin ja ThymeLeafin oletusten mukainen, eli esimerkiksi html-tiedostot löytyvät kansiosta /resources/templates ja muu selaimessa ajettava koodi (css ja JavaScript) löytyy kansion /resources/public alta omista kansioistaan. JavaScriptilla on toteutettu rekisteröityessä tehtävä salasanakenttien vertailu sekä työskentelyn aloitusnäkymässä varmistettu, ettei aloita-nappia voi painaa, jos projektia ei ole valittu.
+
+Kaikki kontrollerit löytyvät kansiosta /controller. Ne on nimetty sen mukaan, mitä tietokannan tietokohteita niiden kautta käsitellään. Yhteydet tietokantaan löytyy niin ikään tietokohteittain nimetyistä tiedostoista kansiosta /repository. Tietokohteita vastaavat java-luokat löytyvät kansiosta /domain.
+
+Sovelluksen autentikointi ja autorisointi -koodi löytyy tiedostosta SecurityConfiguration.java. Tietokannan osoite- ja käyttäjätunnukset löytyvät tiedostosta ProdProvfile.java. 
+
+
+#7. Käyttöliittymä ja järjestelmäkomponentit
+
+Kun käyttäjä on kirjautunut sisään, sivustolla on navigaatiopalkki, josta pääsee oleellisimpiin toimintoihin. Jos sivulta siirrytään muutoin toiseen näkymään, on se tässä merkitty nuolella (-> tai <-). Muutoin näkymät valitaan navigaatiopalkista.
+
+
+signup: KayttajaController -> index
+
+index ja login: Spring Securityn oletuskontrolleri (ohjaus määritelty SecurityConfiguration-luokassa) -> projektit
+
+projektit: Projektien näyttäminen ProjektiController, työskentelyn aloitus/lopetus TuntiController (näkymä, jossa kirjataan työtunteja)
+
+raportti: ProjektiController ja TuntiController -> 
+    muokkaa_tuntia : TuntiController <- (palaa edelliseen näkymään)
+
+kaikki_projektit: ProjektiController ->
+    muokkaa_projektia: ProjektiController <-
+    uusi_projekti ProjektiController -> projektit
+
+ryhmat: RyhmaController ->
+    uusi_ryhma: RyhmaController (toistaiseksi ei tosin tee mitään) 
+

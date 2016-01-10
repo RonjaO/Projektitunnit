@@ -23,3 +23,8 @@ Salasana: matti123
 
 Käyttäjätunnus: testaaja@testi.com
 Salasana: salasana
+
+
+##Jatkokehitystä 
+
+Sovelluksessa on toteutettu tuntiseuranta vain omien projektien osalta. Tarkoituksena olisi jatkaa sovelluksen kehittämistä ja lisätä myös ryhmäprojektit. Joidenkin asioiden toteutuksen voisi vaihtaa JavaScriptille, ainakin lomakkeiden validoinnin ja näkymien sisällön muuttamisen.

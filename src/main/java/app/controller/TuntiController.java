@@ -49,7 +49,8 @@ public class TuntiController {
     }
     
     @RequestMapping(value="/tunti/{id}", method=RequestMethod.GET)
-    public String naytaMuokkaus(@ModelAttribute Tunti tunti) {
+    public String naytaMuokkaus(Model model, @PathVariable int id) {
+        model.addAttribute("tunti", tunnit.findOne(id));
         return "muokkaa_tuntia";
     }
 

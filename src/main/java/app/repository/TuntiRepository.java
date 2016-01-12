@@ -91,10 +91,17 @@ public class TuntiRepository {
             tunti.setKayttajaId(rs.getInt("kayttaja"));
             tunti.setProjektiId(rs.getInt("projekti_id"));
             tunti.setKuvaus(rs.getString("kuvaus"));
+
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+            if (rs.getString("alkuaika").length() == 22 ) {
+                 formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SS");
+            }
             tunti.setAlkuaika(LocalDateTime.parse(rs.getString("alkuaika"), formatter));
 
             if (rs.getString("loppuaika") != null) {
+                if (rs.getString("loppuaika").length() == 22) {
+                    formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SS");
+                }
                 tunti.setLoppuaika(LocalDateTime.parse(rs.getString("loppuaika"), formatter));
             }
             

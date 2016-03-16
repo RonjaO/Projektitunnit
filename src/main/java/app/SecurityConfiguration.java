@@ -44,6 +44,8 @@ public class SecurityConfiguration extends  WebSecurityConfigurerAdapter {
             .loginPage("/login")
             .usernameParameter("email").passwordParameter("password")
             .permitAll();
+            
+            http.csrf().disable();
     }
 
     @Override

@@ -51,7 +51,7 @@ public class TuntiRepository {
     }
     
     public void update(Tunti tunti) {
-        // String alkuaika = uusiAlkuaika(tunti).toString();
+        String alkuaika = uusiAlkuaika(tunti).toString();
         // String loppuaika = uusiLoppuaika(tunti).toString();
 
         // String sql ="UPDATE Tunti SET kuvaus=?, alkuaika=cast (? as timestamp), loppuaika=cast (? as timestamp) WHERE id=?";

@@ -72,6 +72,13 @@ public class ProjektiRepository {
         System.out.println("Poistettu tunti " + kesto.toString() + " projektista " + projektiId);
     }
     
+    public void paivitaKesto(Duration uusiKesto, int projektiId) {
+        String sql = "UPDATE Projekti SET kesto=kesto+ CAST(? AS interval) WHERE id=?";
+        
+        jdbc.update(sql, uusiKesto.toString(), projektiId);
+        
+    }
+    
     
     private static final RowMapper<Projekti> projektiMapper = new RowMapper<Projekti>() {
         public Projekti mapRow(ResultSet rs, int rowNum) throws SQLException {

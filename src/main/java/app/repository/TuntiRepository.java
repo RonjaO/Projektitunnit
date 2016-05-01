@@ -51,14 +51,20 @@ public class TuntiRepository {
     }
     
     public void update(Tunti tunti) {
+        Duration vanhaKesto = tunti.getDuration();
         String alkuaika = uusiAlkuaika(tunti).toString();
         String loppuaika = uusiLoppuaika(tunti).toString();
+        Duration uusiKesto = tunti.getDuration();
 
         String sql ="UPDATE Tunti SET kuvaus=?, alkuaika=cast (? as timestamp), loppuaika=cast (? as timestamp) WHERE id=?";
-        // String sql = "UPDATE Tunti SET kuvaus=? WHERE id=?";
         
         
         jdbc.update(sql, tunti.getKuvaus(), alkuaika, loppuaika, tunti.getId());
+        
+        if (!vanhaKesto.equals(uusiKesto)) {
+            Duration erotus = uusiKesto.minus(vanhaKesto);
+            projektit.paivitaKesto(erotus, tunti.getProjektiId());
+        }
     }
     
     public void delete(int id) {

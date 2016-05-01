@@ -56,7 +56,7 @@ public class TuntiRepository {
 
         String sql ="UPDATE Tunti SET kuvaus=?, alkuaika=cast (? as timestamp), loppuaika=cast (? as timestamp) WHERE id=?";
         
-        jdbc.update(sql, tunti.getKuvaus(), tunti.getId(), alkuaika, loppuaika);
+        jdbc.update(sql, tunti.getKuvaus(), alkuaika, loppuaika, tunti.getId());
     }
     
     public void delete(int id) {

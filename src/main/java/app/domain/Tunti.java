@@ -47,6 +47,11 @@ public class Tunti {
     
     public void setAlkuaika(LocalDateTime alkuaika) {
         this.alkuaika = alkuaika;
+        this.pp = this.alkuaika.getDayOfMonth();
+        this.kk = this.alkuaika.getMonthValue();
+        this.vvvv = this.alkuaika.getYear();
+        this.alkuHh = this.alkuaika.getHour();
+        this.alkuMm = this.alkuaika.getMinute();
     }
     
     public LocalDateTime getLoppuaika() {
@@ -55,6 +60,9 @@ public class Tunti {
     
     public void setLoppuaika(LocalDateTime loppuaika) {
         this.loppuaika = loppuaika;
+        
+        this.loppuHh = this.loppuaika.getHour();
+        this.loppuMm = this.loppuaika.getMinute();
     }
     
     public int getKayttajaId() {
@@ -78,15 +86,15 @@ public class Tunti {
     }
     
     public int getPP() {
-        return this.alkuaika.getDayOfMonth();
+        return this.pp;
     }
     
     public int getKK() {
-        return this.alkuaika.getMonthValue();
+        return this.kk;
     }
     
     public int getVVVV() {
-        return this.alkuaika.getYear();
+        return this.year;
     }
     
     public void setPP(int pp) {
@@ -102,7 +110,7 @@ public class Tunti {
     }
     
     public int getAlkuHH() {
-        return this.alkuaika.getHour();
+        return this.alkuHh;
     }
     
     public void setAlkuHH(int hh) {
@@ -111,7 +119,7 @@ public class Tunti {
     
     
     public int getAlkuMM() {
-        return this.alkuaika.getMinute();
+        return this.alkuMm;
     }
     
     public void setAlkuMM(int mm) {
@@ -119,7 +127,7 @@ public class Tunti {
     }
     
     public int getLoppuHH() {
-        return this.loppuaika.getHour();
+        return this.loppuHh;
     }
     
     public void setLoppuHH(int hh) {
@@ -127,7 +135,7 @@ public class Tunti {
     }
     
     public int getLoppuMM() {
-        return this.loppuaika.getMinute();
+        return this.loppuMm;
     }
     
     public void setLoppuMM(int mm) {

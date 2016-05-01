@@ -43,7 +43,7 @@ public class TuntiRepository {
 
     public void save(int projektiId, String kayttaja) {
         LocalDateTime ldt = LocalDateTime.now();
-        String alkuaika = "'" + ldt.toString() + "'";
+        String alkuaika = ldt.toString();
         
         String sql = "INSERT INTO Tunti(kayttaja, projekti_id, alkuaika) VALUES((SELECT id FROM Kayttaja WHERE email=?), ?, cast(? as timestamp))";
         
@@ -116,7 +116,7 @@ public class TuntiRepository {
     private static final RowMapper<Tunti> tuntiMapper = new RowMapper<Tunti>() {
         public Tunti mapRow(ResultSet rs, int rowNum) throws SQLException {
             Tunti tunti = new Tunti();
-         tunti.setId(rs.getInt("id"));
+             tunti.setId(rs.getInt("id"));
             tunti.setKayttajaId(rs.getInt("kayttaja"));
             tunti.setProjektiId(rs.getInt("projekti_id"));
             tunti.setKuvaus(rs.getString("kuvaus"));
@@ -124,13 +124,23 @@ public class TuntiRepository {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
             if (rs.getString("alkuaika").length() == 22 ) {
                  formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SS");
+            } else if (rs.getString("alkuaika").length() == 21) {
+                formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+            } else if (rs.getString("alkuaika").length() == 19) {
+                formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             }
             tunti.setAlkuaika(LocalDateTime.parse(rs.getString("alkuaika"), formatter));
 
             if (rs.getString("loppuaika") != null) {
                 if (rs.getString("loppuaika").length() == 22) {
                     formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SS");
-                }
+                } else if (rs.getString("loppuaika").length() == 21) {
+                formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+            } else if (rs.getString("loppuaika").length() == 19) {
+                formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            } else if (rs.getString("loppuaika").length() == 23) {
+                formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+            }
                 tunti.setLoppuaika(LocalDateTime.parse(rs.getString("loppuaika"), formatter));
             }
             

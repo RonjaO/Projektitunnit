@@ -13,6 +13,15 @@ public class Tunti {
 
     private LocalDateTime alkuaika;
     private LocalDateTime loppuaika;
+    
+    private int pp;
+    private int kk;
+    private int vvvv;
+    private int alkuHh;
+    private int alkuMm;
+    private int loppuHh;
+    private int loppuMm;
+
     private int kayttajaId;
     private int projektiId;
     
@@ -68,6 +77,63 @@ public class Tunti {
         return this.alkuaika.getDayOfMonth() + "." + this.alkuaika.getMonthValue() + "." + this.alkuaika.getYear();
     }
     
+    public int getPP() {
+        return this.alkuaika.getDayOfMonth();
+    }
+    
+    public int getKK() {
+        return this.alkuaika.getMonthValue();
+    }
+    
+    public int getVVVV() {
+        return this.alkuaika.getYear();
+    }
+    
+    public void setPP(int pp) {
+        this.pp = pp;
+    }
+    
+    public void setKK(int kk) {
+        this.kk = kk;
+    }
+    
+    public void setVVVV(int vvvv) {
+        this.vvvv = vvvv;
+    }
+    
+    public int getAlkuHH() {
+        return this.alkuaika.getHour();
+    }
+    
+    public void setAlkuHH(int hh) {
+        this.alkuHh = hh;
+    }
+    
+    
+    public int getAlkuMM() {
+        return this.alkuaika.getMinute();
+    }
+    
+    public void setAlkuMM(int mm) {
+        this.alkuMm = mm;
+    }
+    
+    public int getLoppuHH() {
+        return this.loppuaika.getHour();
+    }
+    
+    public void setLoppuHH(int hh) {
+        this.loppuHh = hh;
+    }
+    
+    public int getLoppuMM() {
+        return this.loppuaika.getMinute();
+    }
+    
+    public void setLoppuMM(int mm) {
+        this.loppuMm = mm;
+    }
+    
     public String getKesto() {
         if (this.loppuaika == null) {
             return "kesken...";
@@ -92,6 +158,6 @@ public class Tunti {
         Duration kesto = Duration.between(this.alkuaika, this.loppuaika);
         
         return kesto;
-        
     }
+
 }

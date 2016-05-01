@@ -1,4 +1,4 @@
-package app;
+package app.profiles;;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;import org.springfra
 
 
 @Configuration
-//@Profile("prod")
+@Profile("prod")
 public class ProdProfile {
 
     @Bean

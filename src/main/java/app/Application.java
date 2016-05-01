@@ -9,10 +9,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import javax.annotation.PostConstruct;
 import org.springframework.context.annotation.Import;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import app.profiles.DevProfile;
+import app.profiles.ProdProfile;
 
 
 @SpringBootApplication
-//@Import({ProdProfile.class})
+@Import({DevProfile.class, ProdProfile.class})
 public class Application {
 
     private static final Logger log = LoggerFactory.getLogger(Application.class);

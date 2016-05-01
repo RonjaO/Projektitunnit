@@ -51,9 +51,12 @@ public class TuntiRepository {
     }
     
     public void update(Tunti tunti) {
-        String sql ="UPDATE Tunti SET kuvaus=? WHERE id=?";
+        String alkuaika = uusiAlkuaika(tunti).toString();
+        String loppuaika = uusiLoppuaika(tunti).toString();
+
+        String sql ="UPDATE Tunti SET kuvaus=?, alkuaika=cast (? as timestamp), loppuaika=cast (? as timestamp) WHERE id=?";
         
-        jdbc.update(sql, tunti.getKuvaus(), tunti.getId());
+        jdbc.update(sql, tunti.getKuvaus(), tunti.getId(), alkuaika, loppuaika);
     }
     
     public void delete(int id) {
@@ -82,6 +85,30 @@ public class TuntiRepository {
 
     public List<Tunti> kesken() {
         return jdbc.query("SELECT * FROM Tunti WHERE loppuaika IS NULL;", tuntiMapper);
+    }
+    
+    public LocalDateTime uusiAlkuaika(Tunti tunti) {
+        LocalDateTime alkuaika = LocalDateTime.of(tunti.getVVVV(), 
+            tunti.getKK(), 
+            tunti.getPP(), 
+            tunti.getAlkuHH(), 
+            tunti.getAlkuMM());
+
+        tunti.setAlkuaika(alkuaika);
+
+        return alkuaika;
+    }
+    
+    public LocalDateTime uusiLoppuaika(Tunti tunti) {
+        LocalDateTime loppuaika = LocalDateTime.of(tunti.getVVVV(),
+            tunti.getKK(),
+            tunti.getPP(),
+            tunti.getLoppuHH(),
+            tunti.getLoppuMM());
+        
+        tunti.setLoppuaika(loppuaika);
+        
+        return loppuaika;
     }
 
     private static final RowMapper<Tunti> tuntiMapper = new RowMapper<Tunti>() {

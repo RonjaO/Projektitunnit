@@ -94,7 +94,7 @@ public class Tunti {
     }
     
     public int getVVVV() {
-        return this.year;
+        return this.vvvv;
     }
     
     public void setPP(int pp) {

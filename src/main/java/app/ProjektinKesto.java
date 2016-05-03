@@ -33,7 +33,7 @@ public class ProjektinKesto {
         
         System.out.println("Tunteja " + kaikkiTunnit.size() + " ja kesto " + kesto.toString());
         
-        projektit.paivitaKesto(projektiId, kesto);
+        // projektit.paivitaKesto(projektiId, kesto);
         
         return kesto.toString();
     }

@@ -62,13 +62,13 @@ public class TuntiRepository {
         String loppuaika = uusiLoppuaika(tunti).toString();
         Duration uusiKesto = tunti.getDuration();
         
-        if (!(vanhakesto.equals(uusikesto))) {
-            if (vanhakesto.compareTo(uusikesto) >= 1) {
-                Duration erotus = vanhakesto.minus(uusikesto);
-                projektit.lisaaTunti(erotus, tunti.getProjektiId();
-            } else {}
-                Duration erotus = uusikesto.minus(vanhakesto);
+        if (!(vanhaKesto.equals(uusiKesto))) {
+            if (vanhaKesto.compareTo(uusiKesto) >= 1) {
+                Duration erotus = vanhaKesto.minus(uusiKesto);
                 projektit.poistaTunti(erotus, tunti.getProjektiId());
+            } else {}
+                Duration erotus = uusiKesto.minus(vanhaKesto);
+                projektit.lisaaTunti(erotus, tunti.getProjektiId());
             
         }
         

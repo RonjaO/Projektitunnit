@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.PathVariable;
 import java.lang.*;
-import java.util.*;
-import java.time.Duration;
 import javax.validation.Valid;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -47,10 +45,9 @@ public class TuntiController {
     public String lopeta(@ModelAttribute Tunti tunti)  {
         tunnit.loppu(tunti);
         
-
         return "redirect:/projektit";
     }
-
+    
     @RequestMapping(value="/tunti/{id}", method=RequestMethod.GET)
     public String naytaMuokkaus(Model model, @PathVariable int id) {
         model.addAttribute("tunti", tunnit.findOne(id));
@@ -66,7 +63,6 @@ public class TuntiController {
         tunti.setId(id);
             
         tunnit.update(tunti);
-        
             
         return "redirect:/projektit/raportti/" + tunnit.findOne(id).getProjektiId();
     }
@@ -76,7 +72,6 @@ public class TuntiController {
         int projektiId = tunnit.findOne(id).getProjektiId();
         tunnit.delete(id);
         
-        
         return "redirect:/projektit/raportti/" + projektiId;
     }
 
@@ -84,16 +79,5 @@ public class TuntiController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         return auth.getName();
     }
-    
-    // private void kokonaiskesto(int projektiId) {
-    //     List<Tunti> projektinTunnit = tunnit.findAllByKayttajaAndProjekti(kirjautunut(), projektiId);
-    //     Duration kesto = projektinTunnit.get(0).getDuration();
-    //
-    //     for (int i = 1; i < projektinTunnit.size(); i++) {
-    //         kesto.plus(projektinTunnit.get(i).getDuration());
-    //     }
-    //
-    //     projektit.paivitaKesto(kesto, projektiId);
-    // }
 
 }

@@ -2,9 +2,17 @@ package app.domain;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.beans.factory.annotation.Autowired;
 import java.time.Duration;
+import java.util.List;
+import java.time.Duration;
+import app.repository.TuntiRepository;
 
 public class Projekti {
+    
+    @Autowired
+    private TuntiRepository tunnit;
+    
     
     private int id;
     private int omistaja_kayttaja;
@@ -68,6 +76,7 @@ public class Projekti {
     }
     
     public String getKesto() {
+        setKesto(kokonaiskesto());
         return this.kesto;
     }
     
@@ -79,6 +88,19 @@ public class Projekti {
         String[] kaikkiTunnit = this.kesto.split(":");
         
         return kaikkiTunnit[0] + " h " + kaikkiTunnit[1] + " min";
+    }
+    
+    private String kokonaiskesto() {
+        List<Tunti> kaikkiTunnit = tunnit.findAllByProjekti(getId());
+        Duration aika = kaikkiTunnit.get(0).getDuration();
+        
+        if (kaikkiTunnit.size() > 1) {
+            for (int i = 1; i < kaikkiTunnit.size(); i++) {
+                aika.plus(kaikkiTunnit.get(i).getDuration());
+            }
+        }
+        
+        return aika.toString();
     }
     
 }

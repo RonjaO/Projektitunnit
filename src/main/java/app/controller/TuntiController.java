@@ -47,7 +47,7 @@ public class TuntiController {
     public String lopeta(@ModelAttribute Tunti tunti)  {
         tunnit.loppu(tunti, kirjautunut());
         
-        kokonaiskesto(tunti.getProjektiId());
+        // kokonaiskesto(tunti.getProjektiId());
 
         return "redirect:/projektit";
     }
@@ -68,7 +68,7 @@ public class TuntiController {
             
         tunnit.update(tunti, kirjautunut());
         
-        kokonaiskesto(tunti.getProjektiId());
+        // kokonaiskesto(tunti.getProjektiId());
             
         return "redirect:/projektit/raportti/" + tunnit.findOne(id).getProjektiId();
     }
@@ -78,7 +78,7 @@ public class TuntiController {
         int projektiId = tunnit.findOne(id).getProjektiId();
         tunnit.delete(id, kirjautunut());
         
-        kokonaiskesto(projektiId);
+        // kokonaiskesto(projektiId);
         
         return "redirect:/projektit/raportti/" + projektiId;
     }
@@ -88,15 +88,15 @@ public class TuntiController {
         return auth.getName();
     }
     
-    private void kokonaiskesto(int projektiId) {
-        List<Tunti> projektinTunnit = tunnit.findAllByKayttajaAndProjekti(kirjautunut(), projektiId);
-        Duration kesto = projektinTunnit.get(0).getDuration();
-        
-        for (int i = 1; i < projektinTunnit.size(); i++) {
-            kesto.plus(projektinTunnit.get(i).getDuration());
-        }
-        
-        projektit.paivitaKesto(kesto, projektiId);
-    }
+    // private void kokonaiskesto(int projektiId) {
+    //     List<Tunti> projektinTunnit = tunnit.findAllByKayttajaAndProjekti(kirjautunut(), projektiId);
+    //     Duration kesto = projektinTunnit.get(0).getDuration();
+    //
+    //     for (int i = 1; i < projektinTunnit.size(); i++) {
+    //         kesto.plus(projektinTunnit.get(i).getDuration());
+    //     }
+    //
+    //     projektit.paivitaKesto(kesto, projektiId);
+    // }
 
 }

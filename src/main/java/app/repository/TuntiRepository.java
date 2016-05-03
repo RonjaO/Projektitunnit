@@ -40,6 +40,11 @@ public class TuntiRepository {
         return jdbc.query("SELECT * FROM Tunti WHERE projekti_id=? AND kayttaja=(SELECT id FROM Kayttaja WHERE email=?) ORDER BY alkuaika",
             tuntiMapper, projektiId, kayttaja);
     }
+    
+    public List<Tunti> findAllByProjekti(int projektiId) {
+        return jdbc.query("SELECT * FROM Tunti WHERE projekti_id=? ORDER BY alkuaika",
+            tuntiMapper, projektiId);
+    }
 
     public void save(int projektiId, String kayttaja) {
         LocalDateTime ldt = LocalDateTime.now();

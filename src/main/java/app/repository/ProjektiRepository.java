@@ -61,25 +61,26 @@ public class ProjektiRepository {
         jdbc.update(sql, projekti.getNimi(), projekti.getKuvaus(), id);
     }
     
-    public void lisaaTunti(Duration kesto, int projektiId) {
-        paivitaKesto(kesto, projektiId);
+    public void lisaaTunti(int projektiId) {
+        paivitaKesto(projektiId);
         // String sql = "UPDATE Projekti SET kesto=kesto+ CAST(? AS interval) WHERE id=?";
         //
         // jdbc.update(sql, tunti.toString(), projektiId);
         System.out.println("tallennettu tietokantaan projekti-id: " + projektiId);
     }
     
-    public void poistaTunti(Duration kesto, int projektiId) {
-        paivitaKesto(kesto, projektiId);
+    public void poistaTunti(int projektiId) {
+        paivitaKesto(projektiId);
         // String sql = "UPDATE Projekti SET kesto=kesto- CAST(? AS interval) WHERE id=?";
         //
         // jdbc.update(sql, kesto.toString(), projektiId);
     }
     
-    public void paivitaKesto(Duration kesto, int projektiId) {
+    public void paivitaKesto(int projektiId) {
+        Projekti paivitettava = findOne(projektiId);
         String sql = "UPDATE Projekti SET kesto= CAST(? AS interval) WHERE id=?";
         
-        jdbc.update(sql, kesto.toString(), projektiId);
+        jdbc.update(sql, paivitettava.getKesto(), projektiId);
     }
     
     

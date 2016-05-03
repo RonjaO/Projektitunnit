@@ -76,7 +76,7 @@ public class Projekti {
     }
     
     public String getKesto() {
-        setKesto(kokonaiskesto());
+        this.kesto = kokonaiskesto();
         return this.kesto;
     }
     
@@ -85,12 +85,13 @@ public class Projekti {
     }
     
     public String getTunnit() {
-        String[] kaikkiTunnit = this.kesto.split(":");
+        String[] kaikkiTunnit = kokonaiskesto().split(":");
         
         return kaikkiTunnit[0] + " h " + kaikkiTunnit[1] + " min";
     }
     
     private String kokonaiskesto() {
+        System.out.println("Lasketaan kesto");
         List<Tunti> kaikkiTunnit = tunnit.findAllByProjekti(getId());
         Duration aika = kaikkiTunnit.get(0).getDuration();
         

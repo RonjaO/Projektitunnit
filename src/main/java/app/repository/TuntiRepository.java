@@ -61,6 +61,17 @@ public class TuntiRepository {
         String alkuaika = uusiAlkuaika(tunti).toString();
         String loppuaika = uusiLoppuaika(tunti).toString();
         Duration uusiKesto = tunti.getDuration();
+        
+        if (!(vanhakesto.equals(uusikesto))) {
+            if (vanhakesto.compareTo(uusikesto) >= 1) {
+                Duration erotus = vanhakesto.minus(uusikesto);
+                projektit.lisaaTunti(erotus, tunti.getProjektiId();
+            } else {}
+                Duration erotus = uusikesto.minus(vanhakesto);
+                projektit.poistaTunti(erotus, tunti.getProjektiId());
+            
+        }
+        
 
         String sql = "UPDATE Tunti SET kuvaus=?, alkuaika=cast (? as timestamp), loppuaika=cast (? as timestamp) WHERE id=?";
         

@@ -68,24 +68,24 @@ public class ProjektiRepository {
         jdbc.update(sql, projekti.getNimi(), projekti.getKuvaus(), id);
     }
     
-    public void lisaaTunti(int projektiId) {
-        String sql = "UPDATE Projekti SET kesto= CAST(? AS interval) WHERE id=?";
+    public void lisaaTunti(Duration kesto, int projektiId) {
+        String sql = "UPDATE Projekti SET kesto=kesto+ CAST(? AS interval) WHERE id=?";
 
-        jdbc.update(sql, projektinKesto.kokonaiskesto(projektiId), projektiId);
+        jdbc.update(sql, kesto.toString(), projektiId);
         System.out.println("tallennettu tietokantaan projekti-id: " + projektiId);
     }
     
-    public void poistaTunti(int projektiId) {
-        // String sql = "UPDATE Projekti SET kesto= CAST(? AS interval) WHERE id=?";
-        //
-        // jdbc.update(sql, projektinKesto.kokonaiskesto(projektiId), projektiId);
-    }
-    
-    public void paivitaKesto(int projektiId, Duration kesto) {
-        String sql = "UPDATE Projekti SET kesto= CAST(? AS interval) WHERE id=?";
-        
+    public void poistaTunti(Duration kesto, int projektiId) {
+        String sql = "UPDATE Projekti SET kesto=kesto- CAST(? AS interval) WHERE id=?";
+
         jdbc.update(sql, kesto.toString(), projektiId);
     }
+    
+    // public void paivitaKesto(int projektiId, Duration <qkesto) {
+    //     String sql = "UPDATE Projekti SET kesto= CAST(? AS interval) WHERE id=?";
+    //
+    //     jdbc.update(sql, kesto.toString(), projektiId);
+    // }
     
     
     private static final RowMapper<Projekti> projektiMapper = new RowMapper<Projekti>() {

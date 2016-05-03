@@ -88,7 +88,7 @@ public class Projekti {
     }
     
     public String getTunnit() {
-        String[] kaikkiTunnit = projektinKesto.kokonaiskesto(this.id).split(":");
+        String[] kaikkiTunnit = this.kesto.split(":");
         
         return kaikkiTunnit[0] + " h " + kaikkiTunnit[1] + " min";
     }

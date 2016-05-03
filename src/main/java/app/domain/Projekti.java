@@ -100,7 +100,7 @@ public class Projekti {
                 aika.plus(kaikkiTunnit.get(i).getDuration());
             }
         }
-        System.out.println("Lasketaan kesto");
+        System.out.println("Lasketaan kesto. Tunteja " + kaikkiTunnit.size() + " ja kesto " + aika.toString());
         
         return aika.toString();
     }

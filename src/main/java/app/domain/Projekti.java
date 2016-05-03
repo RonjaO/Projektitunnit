@@ -79,7 +79,7 @@ public class Projekti {
     }
     
     public String getKesto() {
-        this.kesto = kokonaiskesto();
+        // this.kesto = kokonaiskesto();
         return this.kesto;
     }
     

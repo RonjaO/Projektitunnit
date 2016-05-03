@@ -17,6 +17,7 @@ public class ProjektinKesto {
     public TuntiRepository tunnit;
     
     public String kokonaiskesto(int projektiId) {
+        System.out.println("Lasketaan oikeassa luokassa");
         Projekti projekti = projektit.findOne(projektiId);
         List<Tunti> kaikkiTunnit = tunnit.findAllByProjekti(projektiId);
         
@@ -29,6 +30,8 @@ public class ProjektinKesto {
         for (Tunti tunti : kaikkiTunnit) {
             kesto = kesto.plus(tunti.getDuration());
         }
+        
+        System.out.println("Tunteja " + kaikkiTunnit.size() + " ja kesto " + kesto.toString());
         
         projektit.paivitaKesto(projektiId, kesto);
         

@@ -11,6 +11,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 import app.domain.Kayttaja;
 import app.domain.Tunti;
+import app.ProjektinKesto;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,6 +31,11 @@ public class ProjektiRepository {
     // private TuntiRepository tunnit;
 
     private Logger log = LoggerFactory.getLogger(getClass());
+    private ProjektinKesto projektinKesto;
+    
+    public ProjektiRepository() {
+        this.projektinKesto = new ProjektinKesto();
+    }
     
     public Projekti findOne(int id) {
         return jdbc.queryForObject("SELECT * FROM Projekti Where id = ?", projektiMapper, id);
@@ -62,25 +68,22 @@ public class ProjektiRepository {
     }
     
     public void lisaaTunti(int projektiId) {
-        paivitaKesto(projektiId);
-        // String sql = "UPDATE Projekti SET kesto=kesto+ CAST(? AS interval) WHERE id=?";
-        //
-        // jdbc.update(sql, tunti.toString(), projektiId);
+        String sql = "UPDATE Projekti SET kesto= CAST(? AS interval) WHERE id=?";
+
+        jdbc.update(sql, projektinKesto.kokonaiskesto(projektiId), projektiId);
         System.out.println("tallennettu tietokantaan projekti-id: " + projektiId);
     }
     
     public void poistaTunti(int projektiId) {
-        paivitaKesto(projektiId);
-        // String sql = "UPDATE Projekti SET kesto=kesto- CAST(? AS interval) WHERE id=?";
+        // String sql = "UPDATE Projekti SET kesto= CAST(? AS interval) WHERE id=?";
         //
-        // jdbc.update(sql, kesto.toString(), projektiId);
+        // jdbc.update(sql, projektinKesto.kokonaiskesto(projektiId), projektiId);
     }
     
-    public void paivitaKesto(int projektiId) {
-        Projekti paivitettava = findOne(projektiId);
+    public void paivitaKesto(int projektiId, Duration kesto) {
         String sql = "UPDATE Projekti SET kesto= CAST(? AS interval) WHERE id=?";
         
-        jdbc.update(sql, paivitettava.getKesto(), projektiId);
+        jdbc.update(sql, kesto.toString(), projektiId);
     }
     
     

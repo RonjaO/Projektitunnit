@@ -50,34 +50,30 @@ public class TuntiRepository {
         jdbc.update(sql, kayttaja, projektiId, alkuaika);
     }
     
-    public void update(Tunti tunti) {
+    public void update(Tunti tunti, String kayttaja) {
         Duration vanhaKesto = tunti.getDuration();
         String alkuaika = uusiAlkuaika(tunti).toString();
         String loppuaika = uusiLoppuaika(tunti).toString();
         Duration uusiKesto = tunti.getDuration();
 
-        String sql ="UPDATE Tunti SET kuvaus=?, alkuaika=cast (? as timestamp), loppuaika=cast (? as timestamp) WHERE id=?";
+        String sql = "UPDATE Tunti SET kuvaus=?, alkuaika=cast (? as timestamp), loppuaika=cast (? as timestamp) WHERE id=?";
         
         
         jdbc.update(sql, tunti.getKuvaus(), alkuaika, loppuaika, tunti.getId());
-        
-        if (!vanhaKesto.equals(uusiKesto)) {
-            Duration erotus = uusiKesto.minus(vanhaKesto);
-            projektit.paivitaKesto(erotus, tunti.getProjektiId());
-        }
+        // projektit.paivitaKesto(tunti.getProjektiId(), kayttaja);
     }
     
-    public void delete(int id) {
+    public void delete(int id, String kayttaja) {
         Tunti tunti = findOne(id);
-        Duration kesto = tunti.getDuration();
+        // Duration kesto = tunti.getDuration();
         
-        projektit.poistaTunti(kesto, tunti.getProjektiId());
+        // projektit.poistaTunti(kayttaja, tunti.getProjektiId());
         
         String sql = "DELETE FROM Tunti WHERE id=?";
         jdbc.update(sql, id);
     }
     
-    public void loppu(Tunti tunti) {
+    public void loppu(Tunti tunti, String kayttaja) {
         Tunti loppuvaTunti = findOne(tunti.getId());
         LocalDateTime ldt = LocalDateTime.now();
         loppuvaTunti.setLoppuaika(ldt);
@@ -87,8 +83,8 @@ public class TuntiRepository {
         
         jdbc.update(sql, loppuaika, tunti.getKuvaus(), tunti.getId());
 
-         Duration kesto = Duration.between(loppuvaTunti.getAlkuaika(), ldt);
-        projektit.lisaaTunti(tunti.getProjektiId(), kesto);
+         // Duration kesto = Duration.between(loppuvaTunti.getAlkuaika(), ldt);
+        // projektit.lisaaTunti(tunti.getProjektiId(), kayttaja);
     } 
 
     public List<Tunti> kesken() {
@@ -153,5 +149,7 @@ public class TuntiRepository {
             return tunti;
         }
     };
+    
+    
     
 }

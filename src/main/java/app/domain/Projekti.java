@@ -92,6 +92,9 @@ public class Projekti {
     
     private String kokonaiskesto() {
         List<Tunti> kaikkiTunnit = tunnit.findAllByProjekti(getId());
+        System.out.println("Lasketaan kesto. Tunteja " + kaikkiTunnit.size());
+
+
         Duration aika = kaikkiTunnit.get(0).getDuration();
         
         if (kaikkiTunnit.size() > 1) {
@@ -100,7 +103,6 @@ public class Projekti {
                 aika.plus(kaikkiTunnit.get(i).getDuration());
             }
         }
-        System.out.println("Lasketaan kesto. Tunteja " + kaikkiTunnit.size() + " ja kesto " + aika.toString());
         
         return aika.toString();
     }

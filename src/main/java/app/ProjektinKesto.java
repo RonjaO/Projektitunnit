@@ -17,10 +17,10 @@ public class ProjektinKesto {
     public TuntiRepository tunnit;
     
     public String kokonaiskesto(int projektiId) {
-        System.out.println("Lasketaan oikeassa luokassa");
+        System.out.println("Lasketaan oikeassa luokassa kesto projektille" + projektiId);
         Projekti projekti = projektit.findOne(projektiId);
         List<Tunti> kaikkiTunnit = tunnit.findAllByProjekti(projektiId);
-        
+        System.out.println("Saatiin tunnit-lista");
         if (kaikkiTunnit.size() == 0) {
             return "00:00";
         }

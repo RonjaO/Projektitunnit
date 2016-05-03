@@ -38,6 +38,7 @@ public class ProjektiRepository {
     }
     
     public Projekti findOne(int id) {
+        System.out.println("Haetaan projektin tiedot");
         return jdbc.queryForObject("SELECT * FROM Projekti Where id = ?", projektiMapper, id);
     }
     

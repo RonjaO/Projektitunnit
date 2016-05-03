@@ -91,6 +91,7 @@ public class Projekti {
     }
     
     private String kokonaiskesto() {
+        System.out.println("Lasketaan. Tähänkö tämä kaatuu?");
         List<Tunti> kaikkiTunnit = tunnit.findAllByProjekti(getId());
         System.out.println("Lasketaan kesto. Tunteja " + kaikkiTunnit.size());
 

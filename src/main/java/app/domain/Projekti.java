@@ -95,6 +95,7 @@ public class Projekti {
         Duration aika = kaikkiTunnit.get(0).getDuration();
         
         if (kaikkiTunnit.size() > 1) {
+            System.out.println("Lasketaan projektin kesto");
             for (int i = 1; i < kaikkiTunnit.size(); i++) {
                 aika.plus(kaikkiTunnit.get(i).getDuration());
             }

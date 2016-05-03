@@ -57,6 +57,7 @@ public class TuntiRepository {
     }
     
     public void update(Tunti tunti, String kayttaja) {
+        System.out.println("tunti päivittyy");
         Duration vanhaKesto = tunti.getDuration();
         String alkuaika = uusiAlkuaika(tunti).toString();
         String loppuaika = uusiLoppuaika(tunti).toString();

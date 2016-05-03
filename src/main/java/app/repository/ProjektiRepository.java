@@ -10,8 +10,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 import app.domain.Kayttaja;
-import app.domain.Tunti;
-import app.ProjektinKesto;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,19 +24,9 @@ public class ProjektiRepository {
     
     @Autowired
     private KayttajaRepository kayttajaRepository;
-    
-    // @Autowired
-    // private TuntiRepository tunnit;
-
     private Logger log = LoggerFactory.getLogger(getClass());
-    private ProjektinKesto projektinKesto;
-    
-    public ProjektiRepository() {
-        this.projektinKesto = new ProjektinKesto();
-    }
     
     public Projekti findOne(int id) {
-        System.out.println("Haetaan projektin tiedot");
         return jdbc.queryForObject("SELECT * FROM Projekti Where id = ?", projektiMapper, id);
     }
     
@@ -68,24 +56,21 @@ public class ProjektiRepository {
         jdbc.update(sql, projekti.getNimi(), projekti.getKuvaus(), id);
     }
     
-    public void lisaaTunti(Duration kesto, int projektiId) {
-        String sql = "UPDATE Projekti SET kesto=kesto+ CAST(? AS interval) WHERE id=?";
+    public void lisaaTunti(int projektiId, Duration tunti) {
+        System.out.println("Kesto: " + tunti.toString());
 
-        jdbc.update(sql, kesto.toString(), projektiId);
+        String sql = "UPDATE Projekti SET kesto=kesto+ CAST(? AS interval) WHERE id=?";
+        
+        jdbc.update(sql, tunti.toString(), projektiId);
         System.out.println("tallennettu tietokantaan projekti-id: " + projektiId);
     }
     
     public void poistaTunti(Duration kesto, int projektiId) {
         String sql = "UPDATE Projekti SET kesto=kesto- CAST(? AS interval) WHERE id=?";
-
+        
         jdbc.update(sql, kesto.toString(), projektiId);
+        System.out.println("Poistettu tunti " + kesto.toString() + " projektista " + projektiId);
     }
-    
-    // public void paivitaKesto(int projektiId, Duration <qkesto) {
-    //     String sql = "UPDATE Projekti SET kesto= CAST(? AS interval) WHERE id=?";
-    //
-    //     jdbc.update(sql, kesto.toString(), projektiId);
-    // }
     
     
     private static final RowMapper<Projekti> projektiMapper = new RowMapper<Projekti>() {
@@ -99,16 +84,5 @@ projekti.setKesto(rs.getString("kesto"));
             return projekti;
         }
     };
-    
-    // private Duration kokonaiskesto(String kayttaja, int projektiId) {
-    //     List<Tunti> kaikkiTunnit = tunnit.findAllByKayttajaAndProjekti(kayttaja, projektiId);
-    //     Duration kesto = kaikkiTunnit.get(0).getDuration();
-    //
-    //     for (int i = 1; i < kaikkiTunnit.size(); i++) {
-    //         kesto.plus(kaikkiTunnit.get(i).getDuration());
-    //     }
-    //
-    //     return kesto;
-    // }
     
 }

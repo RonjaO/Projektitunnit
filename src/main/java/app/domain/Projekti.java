@@ -7,6 +7,7 @@ import java.time.Duration;
 import java.util.List;
 import java.time.Duration;
 import app.repository.TuntiRepository;
+import app.ProjektinKesto;
 
 public class Projekti {
     
@@ -25,14 +26,16 @@ public class Projekti {
     private String kuvaus;
     
     private String kesto;
+    private ProjektinKesto projektinKesto;
     
     public Projekti() {
-        
+        this.projektinKesto = new ProjektinKesto();
     }
     
     public Projekti(String nimi, String kuvaus) {
         this.nimi = nimi;
         this.kuvaus = kuvaus;
+        this.projektinKesto = new ProjektinKesto();
     }
     
     public int getId() {
@@ -85,27 +88,27 @@ public class Projekti {
     }
     
     public String getTunnit() {
-        String[] kaikkiTunnit = kokonaiskesto().split(":");
+        String[] kaikkiTunnit = projektinKesto.kokonaiskesto(this.id).split(":");
         
         return kaikkiTunnit[0] + " h " + kaikkiTunnit[1] + " min";
     }
     
-    private String kokonaiskesto() {
-        System.out.println("Lasketaan. Tähänkö tämä kaatuu?");
-        List<Tunti> kaikkiTunnit = tunnit.findAllByProjekti(getId());
-        System.out.println("Lasketaan kesto. Tunteja " + kaikkiTunnit.size());
-
-
-        Duration aika = kaikkiTunnit.get(0).getDuration();
-        
-        if (kaikkiTunnit.size() > 1) {
-            System.out.println("Lasketaan projektin kesto");
-            for (int i = 1; i < kaikkiTunnit.size(); i++) {
-                aika.plus(kaikkiTunnit.get(i).getDuration());
-            }
-        }
-        
-        return aika.toString();
-    }
+    // private String kokonaiskesto() {
+    //     System.out.println("Lasketaan. Tähänkö tämä kaatuu?");
+    //     List<Tunti> kaikkiTunnit = tunnit.findAllByProjekti(getId());
+    //     System.out.println("Lasketaan kesto. Tunteja " + kaikkiTunnit.size());
+    //
+    //
+    //     Duration aika = kaikkiTunnit.get(0).getDuration();
+    //
+    //     if (kaikkiTunnit.size() > 1) {
+    //         System.out.println("Lasketaan projektin kesto");
+    //         for (int i = 1; i < kaikkiTunnit.size(); i++) {
+    //             aika.plus(kaikkiTunnit.get(i).getDuration());
+    //         }
+    //     }
+    //
+    //     return aika.toString();
+    // }
     
 }

@@ -42,7 +42,8 @@ public class TuntiRepository {
     }
     
     public List<Tunti> findAllByProjekti(int projektiId) {
-        return jdbc.query("SELECT * FROM Tunti WHERE projekti_id=? ORDER BY alkuaika",
+        System.out.println("Etsitään tunteja");
+        return jdbc.query("SELECT * FROM Tunti WHERE projekti_id=? ",
             tuntiMapper, projektiId);
     }
 

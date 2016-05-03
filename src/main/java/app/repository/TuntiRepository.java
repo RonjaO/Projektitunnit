@@ -56,7 +56,7 @@ public class TuntiRepository {
         jdbc.update(sql, kayttaja, projektiId, alkuaika);
     }
     
-    public void update(Tunti tunti, String kayttaja) {
+    public void update(Tunti tunti) {
         System.out.println("tunti päivittyy");
         Duration vanhaKesto = tunti.getDuration();
         String alkuaika = uusiAlkuaika(tunti).toString();
@@ -84,7 +84,7 @@ public class TuntiRepository {
         // projektit.paivitaKesto(tunti.getProjektiId(), kayttaja);
     }
     
-    public void delete(int id, String kayttaja) {
+    public void delete(int id) {
         Tunti tunti = findOne(id);
         // Duration kesto = tunti.getDuration();
         
@@ -94,7 +94,7 @@ public class TuntiRepository {
         jdbc.update(sql, id);
     }
     
-    public void loppu(Tunti tunti, String kayttaja) {
+    public void loppu(Tunti tunti) {
         Tunti loppuvaTunti = findOne(tunti.getId());
         LocalDateTime ldt = LocalDateTime.now();
         loppuvaTunti.setLoppuaika(ldt);
@@ -104,8 +104,8 @@ public class TuntiRepository {
         
         jdbc.update(sql, loppuaika, tunti.getKuvaus(), tunti.getId());
 
-         // Duration kesto = Duration.between(loppuvaTunti.getAlkuaika(), ldt);
-        // projektit.lisaaTunti(tunti.getProjektiId(), kayttaja);
+         Duration kesto = Duration.between(loppuvaTunti.getAlkuaika(), ldt);
+        projektit.lisaaTunti(tunti.getProjektiId(), kesto);
     } 
 
     public List<Tunti> kesken() {

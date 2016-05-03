@@ -45,9 +45,8 @@ public class TuntiController {
     
     @RequestMapping(value="/projektit/tunti/{id}", method=RequestMethod.POST)
     public String lopeta(@ModelAttribute Tunti tunti)  {
-        tunnit.loppu(tunti, kirjautunut());
+        tunnit.loppu(tunti);
         
-        // kokonaiskesto(tunti.getProjektiId());
 
         return "redirect:/projektit";
     }
@@ -66,9 +65,8 @@ public class TuntiController {
         
         tunti.setId(id);
             
-        tunnit.update(tunti, kirjautunut());
+        tunnit.update(tunti);
         
-        // kokonaiskesto(tunti.getProjektiId());
             
         return "redirect:/projektit/raportti/" + tunnit.findOne(id).getProjektiId();
     }
@@ -76,9 +74,8 @@ public class TuntiController {
     @RequestMapping(value="/tunti/{id}", method=RequestMethod.DELETE)
     public String poista(@PathVariable int id) {
         int projektiId = tunnit.findOne(id).getProjektiId();
-        tunnit.delete(id, kirjautunut());
+        tunnit.delete(id);
         
-        // kokonaiskesto(projektiId);
         
         return "redirect:/projektit/raportti/" + projektiId;
     }

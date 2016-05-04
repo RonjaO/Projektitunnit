@@ -7,13 +7,13 @@ import java.time.Duration;
 import java.util.List;
 import java.time.Duration;
 import app.repository.TuntiRepository;
-import app.ProjektinKesto;
 
 public class Projekti {
     
     private int id;
     private int omistaja_kayttaja;
     private int omistaja_ryhma;
+
     @NotBlank(message="Projektin nimi ei saa olla tyhjä")
     @Length(min = 1, max =50, message="Nimen pituus saa olla korkeitaan 50 merkkiä")
     private String nimi;

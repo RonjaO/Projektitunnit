@@ -57,36 +57,16 @@ public class TuntiRepository {
     }
     
     public void update(Tunti tunti) {
-        System.out.println("tunti päivittyy");
-        // Duration vanhaKesto = tunti.getDuration();
         String alkuaika = uusiAlkuaika(tunti).toString();
         String loppuaika = uusiLoppuaika(tunti).toString();
-        // Duration uusiKesto = tunti.getDuration();
-        
-        // if (!(vanhaKesto.equals(uusiKesto))) {
-        //     System.out.println("kesto päivittyi");
-        //     if (vanhaKesto.compareTo(uusiKesto) >= 1) {
-        //         System.out.println("Uusi kesto on lyhempi");
-        //         Duration erotus = vanhaKesto.minus(uusiKesto);
-        //         projektit.poistaTunti(erotus, tunti.getProjektiId());
-        //     } else {
-        //         System.out.println("Uusi kesto on pidempi");
-        //         Duration erotus = uusiKesto.minus(vanhaKesto);
-        //         projektit.lisaaTunti(tunti.getProjektiId(), erotus);
-        //     }
-        // }
         
         String sql = "UPDATE Tunti SET kuvaus=?, alkuaika=cast (? as timestamp), loppuaika=cast (? as timestamp) WHERE id=?";
         
         jdbc.update(sql, tunti.getKuvaus(), alkuaika, loppuaika, tunti.getId());
-        // projektit.paivitaKesto(tunti.getProjektiId(), kayttaja);
     }
     
     public void delete(int id) {
         Tunti tunti = findOne(id);
-        // Duration kesto = tunti.getDuration();
-        
-        // projektit.poistaTunti(kayttaja, tunti.getProjektiId());
         
         String sql = "DELETE FROM Tunti WHERE id=?";
         jdbc.update(sql, id);
@@ -101,16 +81,13 @@ public class TuntiRepository {
         String sql = "UPDATE Tunti SET loppuaika=cast (? as timestamp), kuvaus=? WHERE id=?";
         
         jdbc.update(sql, loppuaika, tunti.getKuvaus(), tunti.getId());
-
-         Duration kesto = Duration.between(loppuvaTunti.getAlkuaika(), ldt);
-        projektit.lisaaTunti(tunti.getProjektiId(), kesto);
     } 
 
     public List<Tunti> kesken() {
         return jdbc.query("SELECT * FROM Tunti WHERE loppuaika IS NULL;", tuntiMapper);
     }
     
-    public LocalDateTime uusiAlkuaika(Tunti tunti) {
+    private LocalDateTime uusiAlkuaika(Tunti tunti) {
         LocalDateTime alkuaika = LocalDateTime.of(tunti.getVVVV(), 
             tunti.getKK(), 
             tunti.getPP(), 
@@ -122,7 +99,7 @@ public class TuntiRepository {
         return alkuaika;
     }
     
-    public LocalDateTime uusiLoppuaika(Tunti tunti) {
+    private LocalDateTime uusiLoppuaika(Tunti tunti) {
         LocalDateTime loppuaika = LocalDateTime.of(tunti.getVVVV(),
             tunti.getKK(),
             tunti.getPP(),
@@ -168,7 +145,5 @@ public class TuntiRepository {
             return tunti;
         }
     };
-    
-    
     
 }

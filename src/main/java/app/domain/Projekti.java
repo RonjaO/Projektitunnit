@@ -11,10 +11,6 @@ import app.ProjektinKesto;
 
 public class Projekti {
     
-    @Autowired
-    private TuntiRepository tunnit;
-    
-    
     private int id;
     private int omistaja_kayttaja;
     private int omistaja_ryhma;
@@ -26,16 +22,13 @@ public class Projekti {
     private String kuvaus;
     
     private String kesto;
-    private ProjektinKesto projektinKesto;
     
     public Projekti() {
-        this.projektinKesto = new ProjektinKesto();
     }
     
     public Projekti(String nimi, String kuvaus) {
         this.nimi = nimi;
         this.kuvaus = kuvaus;
-        this.projektinKesto = new ProjektinKesto();
     }
     
     public int getId() {
@@ -79,7 +72,6 @@ public class Projekti {
     }
     
     public String getKesto() {
-        // this.kesto = kokonaiskesto();
         return this.kesto;
     }
     
@@ -93,24 +85,5 @@ public class Projekti {
         
         return kaikkiTunnit[0] + " h " + kaikkiTunnit[1] + " min";
     }
-    
-    // private String kokonaiskesto() {
-    //     System.out.println("Lasketaan. Tähänkö tämä kaatuu?");
-    //     List<Tunti> kaikkiTunnit = tunnit.findAllByKayttajaAndProjekti("ronja.oja@gmail.com", 1);
-    //     System.out.println("Lasketaan kesto. Tunteja " + kaikkiTunnit.size());
-    //
-    //     if (kaikkiTunnit.size() == 0) {
-    //         return "00:00";
-    //     }
-    //
-    //     Duration aika = Duration.ZERO;
-    //
-    //     for (Tunti tunti : kaikkiTunnit) {
-    //         if (tunti.getLoppuaika() != null || tunti.getAlkuaika() != null) {
-    //             aika = aika.plus(tunti.getDuration());
-    //         }
-    //     }
-    //     return aika.toString();
-    // }
     
 }

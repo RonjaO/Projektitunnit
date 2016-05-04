@@ -51,12 +51,9 @@ public class ProjektiController {
 
             return "projektit";
         }
-        
-        List<Projekti> kaikkiProjektit = projektit.findAllByUser(kirjautunut());
-        
-        laskeKestot(kaikkiProjektit);
+                
 
-        model.addAttribute("projektit", kaikkiProjektit);
+        model.addAttribute("projektit", laskeKestot());
         
 
         model.addAttribute("kayttaja", kirjautunut());
@@ -82,7 +79,7 @@ public class ProjektiController {
     
     @RequestMapping(method=RequestMethod.GET, value="/kaikki")
     public String muokkaaProjekteja(Model model) {
-        model.addAttribute("projektit", projektit.findAllByUser(kirjautunut()));
+        model.addAttribute("projektit", laskeKestot());
         
         return "kaikki_projektit";
     }
@@ -113,7 +110,7 @@ public class ProjektiController {
     
     @RequestMapping(value="/raportti", method=RequestMethod.GET)
     public String raportti(Model model) {
-        model.addAttribute("projektit", projektit.findAllByUser(kirjautunut()));
+        model.addAttribute("projektit", laskeKestot());
         
         return "raportti";
     }
@@ -123,14 +120,18 @@ public class ProjektiController {
         return auth.getName();
     }
     
-    private void laskeKestot(List<Projekti> kaikkiprojektit) {
+    private List<Projekti> laskeKestot() {
+        List<Projekti> kaikkiprojektit = projektit.findAllByUser(kirjautunut());
+
         if (kaikkiprojektit.isEmpty()) {
-            return;
+            return kaikkiprojektit;
         }
         
         for (Projekti projekti : kaikkiprojektit) {
             kokonaiskesto(projekti);
         }
+        
+        return kaikkiprojektit;
     }
     
     private void kokonaiskesto(Projekti projekti) {

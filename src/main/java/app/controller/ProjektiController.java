@@ -149,8 +149,8 @@ public class ProjektiController {
         
         System.out.println("Kesto on " + kesto.toString());
         
-        Long min = kesto.toMinutes();
-        Long h = 0;
+        long min = kesto.toMinutes();
+        long h = 0;
         
         while (true) {
             if (min >= 60) {

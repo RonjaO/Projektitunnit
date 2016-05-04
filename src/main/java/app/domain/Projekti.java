@@ -88,6 +88,7 @@ public class Projekti {
     }
     
     public String getTunnit() {
+        System.out.println("Kesto on " + this.kesto.toString());
         String[] kaikkiTunnit = this.kesto.split(":");
         
         return kaikkiTunnit[0] + " h " + kaikkiTunnit[1] + " min";

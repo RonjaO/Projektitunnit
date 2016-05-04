@@ -95,7 +95,7 @@ public class Projekti {
     
     private String kokonaiskesto() {
         System.out.println("Lasketaan. Tähänkö tämä kaatuu?");
-        List<Tunti> kaikkiTunnit = tunnit.findAllByProjekti(getId());
+        List<Tunti> kaikkiTunnit = tunnit.findAllByKayttajaAndProjekti(1, 1));
         System.out.println("Lasketaan kesto. Tunteja " + kaikkiTunnit.size());
 
         if (kaikkiTunnit.size() == 0) {

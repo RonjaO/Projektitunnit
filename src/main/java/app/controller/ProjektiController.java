@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import app.domain.Kayttaja; 
 import java.util.*;
+import java.time.Duration;
 
 
 @Controller
@@ -50,8 +51,12 @@ public class ProjektiController {
 
             return "projektit";
         }
+        
+        List<Projekti> kaikkiProjektit = projektit.findAllByUser(kirjautunut());
+        
+        laskeKestot(kaikkiProjektit);
 
-        model.addAttribute("projektit", projektit.findAllByUser(kirjautunut()));
+        model.addAttribute("projektit", kaikkiProjektit);
         
 
         model.addAttribute("kayttaja", kirjautunut());
@@ -116,6 +121,33 @@ public class ProjektiController {
     private String kirjautunut() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         return auth.getName();
+    }
+    
+    private void laskeKestot(List<Projekti> kaikkiprojektit) {
+        if (kaikkiprojektit.isEmpty()) {
+            return;
+        }
+        
+        for (Projekti projekti : kaikkiprojektit) {
+            kokonaiskesto(projekti);
+        }
+    }
+    
+    private void kokonaiskesto(Projekti projekti) {
+        List<Tunti> kaikkitunnit = tunnit.findAllByKayttajaAndProjekti(kirjautunut(), projekti.getId());
+        if (kaikkitunnit.isEmpty()) {
+            return;
+        }
+        
+        Duration kesto = Duration.ZERO;
+        
+        for (Tunti tunti : kaikkitunnit) {
+            if(tunti.getAlkuaika() != null || tunti.getLoppuaika() != null) {
+                kesto = kesto.plus(Duration.between(tunti.getAlkuaika(), tunti.getLoppuaika()));
+            }
+        }
+        
+        projekti.setKesto(kesto.toString());
     }
     
 }

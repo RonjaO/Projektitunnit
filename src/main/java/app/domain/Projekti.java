@@ -88,27 +88,28 @@ public class Projekti {
     }
     
     public String getTunnit() {
-        String[] kaikkiTunnit = this.kesto.split(":");
+        String[] kaikkiTunnit = kokonaiskesto().split(":");
         
         return kaikkiTunnit[0] + " h " + kaikkiTunnit[1] + " min";
     }
     
-    // private String kokonaiskesto() {
-    //     System.out.println("Lasketaan. Tähänkö tämä kaatuu?");
-    //     List<Tunti> kaikkiTunnit = tunnit.findAllByProjekti(getId());
-    //     System.out.println("Lasketaan kesto. Tunteja " + kaikkiTunnit.size());
-    //
-    //
-    //     Duration aika = kaikkiTunnit.get(0).getDuration();
-    //
-    //     if (kaikkiTunnit.size() > 1) {
-    //         System.out.println("Lasketaan projektin kesto");
-    //         for (int i = 1; i < kaikkiTunnit.size(); i++) {
-    //             aika.plus(kaikkiTunnit.get(i).getDuration());
-    //         }
-    //     }
-    //
-    //     return aika.toString();
-    // }
+    private String kokonaiskesto() {
+        System.out.println("Lasketaan. Tähänkö tämä kaatuu?");
+        List<Tunti> kaikkiTunnit = tunnit.findAllByProjekti(getId());
+        System.out.println("Lasketaan kesto. Tunteja " + kaikkiTunnit.size());
+
+        if (kaikkiTunnit.size() == 0) {
+            return "00:00";
+        }
+
+        Duration aika = Duration.ZERO;
+
+        for (Tunti tunti : kaikkiTunnit) {
+            if (tunti.getLoppuaika() != null || tunti.getAlkuaika() != null) {
+                aika = aika.plus(tunti.getDuration());
+            }
+        }
+        return aika.toString();
+    }
     
 }

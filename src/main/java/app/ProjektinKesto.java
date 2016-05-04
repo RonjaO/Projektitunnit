@@ -17,18 +17,19 @@ public class ProjektinKesto {
     public TuntiRepository tunnit;
     
     public String kokonaiskesto(int projektiId) {
-        System.out.println("Lasketaan oikeassa luokassa kesto projektille" + projektiId);
-        Projekti projekti = projektit.findOne(projektiId);
+        System.out.println("Lasketaan oikeassa luokassa kesto projektille " + projektiId);
         List<Tunti> kaikkiTunnit = tunnit.findAllByProjekti(projektiId);
         System.out.println("Saatiin tunnit-lista");
         if (kaikkiTunnit.size() == 0) {
             return "00:00";
         }
         
-        Duration kesto = null;
+        Duration kesto = Duration.ZERO;
 
         for (Tunti tunti : kaikkiTunnit) {
-            kesto = kesto.plus(tunti.getDuration());
+            if (tunti.getLoppuaika() != null) {
+                kesto = kesto.plus(tunti.getDuration());
+            }
         }
         
         System.out.println("Tunteja " + kaikkiTunnit.size() + " ja kesto " + kesto.toString());

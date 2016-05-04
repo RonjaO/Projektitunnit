@@ -88,28 +88,28 @@ public class Projekti {
     }
     
     public String getTunnit() {
-        String[] kaikkiTunnit = kokonaiskesto().split(":");
+        String[] kaikkiTunnit = this.kesto.split(":");
         
         return kaikkiTunnit[0] + " h " + kaikkiTunnit[1] + " min";
     }
     
-    private String kokonaiskesto() {
-        System.out.println("Lasketaan. Tähänkö tämä kaatuu?");
-        List<Tunti> kaikkiTunnit = tunnit.findAllByKayttajaAndProjekti("ronja.oja@gmail.com", 1);
-        System.out.println("Lasketaan kesto. Tunteja " + kaikkiTunnit.size());
-
-        if (kaikkiTunnit.size() == 0) {
-            return "00:00";
-        }
-
-        Duration aika = Duration.ZERO;
-
-        for (Tunti tunti : kaikkiTunnit) {
-            if (tunti.getLoppuaika() != null || tunti.getAlkuaika() != null) {
-                aika = aika.plus(tunti.getDuration());
-            }
-        }
-        return aika.toString();
-    }
+    // private String kokonaiskesto() {
+    //     System.out.println("Lasketaan. Tähänkö tämä kaatuu?");
+    //     List<Tunti> kaikkiTunnit = tunnit.findAllByKayttajaAndProjekti("ronja.oja@gmail.com", 1);
+    //     System.out.println("Lasketaan kesto. Tunteja " + kaikkiTunnit.size());
+    //
+    //     if (kaikkiTunnit.size() == 0) {
+    //         return "00:00";
+    //     }
+    //
+    //     Duration aika = Duration.ZERO;
+    //
+    //     for (Tunti tunti : kaikkiTunnit) {
+    //         if (tunti.getLoppuaika() != null || tunti.getAlkuaika() != null) {
+    //             aika = aika.plus(tunti.getDuration());
+    //         }
+    //     }
+    //     return aika.toString();
+    // }
     
 }

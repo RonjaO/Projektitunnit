@@ -147,7 +147,22 @@ public class ProjektiController {
             }
         }
         
-        projekti.setKesto(kesto.toString());
+        System.out.println("Kesto on " + kesto.toString());
+        
+        Long min = kesto.toMinutes();
+        Long h = 0;
+        
+        while (true) {
+            if (min >= 60) {
+                h++;
+                min = min - 60;
+            } else {
+                break;
+            }
+        }
+        
+        String parsittuKesto = h + ":" + min;
+        projekti.setKesto(parsittuKesto);
     }
     
 }
